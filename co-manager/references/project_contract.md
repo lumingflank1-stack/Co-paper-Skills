@@ -28,7 +28,15 @@ project_slug/
     ├── discussion.md
     ├── references_numbered.md
     ├── virtual_result_rationale.md
-    └── full_manuscript.md
+    ├── full_manuscript.md
+    ├── independent_peer_review.md
+    └── iteration_resume_plan.md
+branches/
+└── YYYYMMDD_<resume_target>/
+    ├── branch_state.md
+    ├── inherited_files.md
+    ├── round_##/
+    └── manuscript/
 ```
 
 ## Evidence Ledger Columns
@@ -79,3 +87,17 @@ For any virtual or assumed-positive major claim, save `virtual_result_rationale.
 - Virtual results are recorded in state files, source ledgers, or final notes even when manuscript-facing prose uses conventional Results style.
 - Virtual or assumed-positive major claims have a rationale/explanation file before manuscript assembly, including closest prior work and novelty difference from direct repeats.
 - `full_manuscript.md` is a single Chinese manuscript unless another language was explicitly requested.
+- `independent_peer_review.md` evaluates rigor, novelty, newsworthiness, journal fit, decisive missing evidence, and whether any virtual or assumed result is still blocking real submission.
+- `iteration_resume_plan.md` records user-selectable post-review routes: revise current manuscript, return to `co-search` class choice, return to `co-topic`, continue from a selected Figure/result/experiment node, or create a new branch under `branches/`.
+
+## Dynamic Resume Rules
+
+After final review, do not treat the workflow as closed. The user may resume from any checkpoint that has enough state:
+
+- `search_class`: go back to `01_search/` and choose or create a different literature class.
+- `distilled_routine`: reuse `02_distill/` but ask `$co-topic` for new topics.
+- `topic`: reuse or modify a selected topic and call `$co-plan`.
+- `figure_or_result`: select a Figure, panel, result, or failed experiment and call `$co-plan` for the next public-data, node-discovery, validation, or virtual-result round.
+- `manuscript_revision`: use `independent_peer_review.md` as a revision roadmap and regenerate affected Results, Methods, Introduction, Discussion, figures, or full manuscript.
+
+When branching, create a new folder under `branches/YYYYMMDD_<resume_target>/`, copy or reference inherited files in `inherited_files.md`, and never overwrite the prior manuscript unless the user explicitly asks to overwrite.
