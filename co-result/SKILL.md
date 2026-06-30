@@ -40,8 +40,8 @@ If virtual/simulated results are not explicitly requested, do not invent positiv
    **中：** 用 `(Figure 1A)`、`(Figure 1A-D)` 等方式在正文中索引图版。
 4. **EN:** Write figure legends after Results and distinguish schematic, representative image, quantification, and statistical panels.  
    **中：** Results 后写图注，并区分示意图、代表图、定量图和统计图。
-5. **EN:** For full Results packages, virtual-result packages, assumed-result manuscript packages, or `$co-manager` manuscript assembly, call the available image generation path (`imagegen` / GPT Image 2 when available) by default to create at least planning-grade complete multi-panel bitmap figures and save them in the workspace. If image generation is unavailable, blocked, or the user asks for text only, save `figure_generation_prompts.md` plus `figure_generation_blockers.md`.  
-   **中：** 对完整 Results 包、虚拟结果包、假设结果全文包或 `$co-manager` 全文组装，默认调用可用图片生成路径（可用时使用 `imagegen` / GPT Image 2）生成至少规划级完整 multi-panel 位图，并保存到项目目录。如果图片生成不可用、受阻，或用户要求只输出文字，则保存 `figure_generation_prompts.md` 和 `figure_generation_blockers.md`。
+5. **EN:** For full Results packages, virtual-result packages, assumed-result manuscript packages, or `$co-manager` manuscript assembly, identify every independent manuscript figure from Results text and legends (`Figure 1`, `Figure 2`, etc.), then call the available image generation path (`imagegen` / GPT Image 2 when available) to create one complete multi-panel bitmap per independent figure. Save each selected bitmap in the project workspace, update the manuscript Markdown with image links, and write a figure asset manifest. Do not satisfy a full manuscript package with only one combined montage when multiple independent figures are present. If image generation is unavailable, blocked, or the user asks for text only, save `figure_generation_prompts.md` plus `figure_generation_blockers.md` and state the blocker.  
+   **中：** 对完整 Results 包、虚拟结果包、假设结果全文包或 `$co-manager` 全文组装，先从 Results 正文和图注识别所有独立论文图（`Figure 1`、`Figure 2` 等），再默认调用可用图片生成路径（可用时使用 `imagegen` / GPT Image 2）为每个独立 Figure 生成一张完整 multi-panel 位图。每张选定图片都要保存到项目目录，更新全文 Markdown 的图片链接，并写出 figure asset manifest。多个独立 Figure 存在时，不能只用一张总拼图替代完整全文图组。如果图片生成不可用、受阻，或用户要求只输出文字，则保存 `figure_generation_prompts.md` 和 `figure_generation_blockers.md` 并说明原因。
 6. **EN:** Identify raw-data requirements for every claim and panel.  
    **中：** 为每个 claim 和 panel 标出原始数据需求。
 7. **EN:** Generate virtual data only in `virtual_positive_results` mode or when the user explicitly asks for a virtual workbook. Record simulation status only in Markdown report and `result_source_ledger.md`; do not mark every result paragraph, table row, sheet, numeric block, or figure legend as simulated.  
@@ -96,6 +96,7 @@ For a full request, save / 完整任务需保存：
 - `result_source_ledger.md`: panel-level source mode map / panel 级来源模式表。
 - `virtual_result_rationale.md` or `assumed_result_explanation.md`: literature/data/novelty rationale for virtual or assumed positive results, including closest prior work and difference from directly equivalent studies / 虚拟或假设阳性结果的文献、数据和创新性解释，包括最接近既往工作及与直接同构研究的差异。
 - `figures/Figure_*.png`: generated planning or manuscript figures by default when image generation is available / 图片生成可用时默认生成的规划图或论文图。
+- `figure_asset_manifest.md`: one row per generated independent figure, with source prompt, saved path, manuscript link status, and inspection note / 每个独立生成 Figure 一行，记录来源 prompt、保存路径、全文链接状态和检查说明。
 - `figure_generation_prompts.md`: prompts for figures / 图片生成 prompt。
 - `figure_generation_blockers.md`: why bitmap figures were not generated, if generation is unavailable or blocked / 图片生成不可用或受阻时的原因说明。
 - `raw_data_requirements_summary.md`: raw-data requirement map / 原始数据需求表。

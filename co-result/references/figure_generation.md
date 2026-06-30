@@ -8,12 +8,21 @@ Use this guide when the user asks to call ChatGPT image generation, when `$co-re
 
 ## Execution
 
-Use the available ChatGPT image generation path by default (`imagegen` / GPT Image 2 when available). Generate one complete bitmap per independent figure:
+Use the available ChatGPT image generation path by default (`imagegen` / GPT Image 2 when available). First parse the Results text and figure legends to enumerate every independent manuscript figure. Then generate one complete multi-panel bitmap per independent figure:
 
 - `figures/Figure_1_<short_topic>.png`
 - `figures/Figure_2_<short_topic>.png`
+- `figures/Figure_3_<short_topic>.png`
 
-Do not leave project-referenced images only in the default generated-images directory. Copy final selected images into the project workspace.
+Do not replace a full manuscript's figure set with a single global montage when the manuscript contains multiple independent figures. If the manuscript has Figure 1 through Figure 6, produce six independent image files. Do not leave project-referenced images only in the default generated-images directory. Copy final selected images into the project workspace.
+
+After generation:
+
+1. Update the manuscript Markdown so each `Figure N` has a local image link.
+2. Save `figure_asset_manifest.md` with one row per figure: figure id, short topic, prompt source, saved path, linked in manuscript yes/no, inspection note.
+3. If an image contains inaccurate long labels but the structure is useful, keep it only as a planning figure and state that final production figures must be redrawn with real data.
+
+全文含多个独立 Figure 时，不要用一张总拼图代替。若全文包含 Figure 1 到 Figure 6，就生成 6 个独立图片文件，并写入全文链接和 `figure_asset_manifest.md`。
 
 When the image generation path is unavailable, blocked, or the user requests text-only output, save both:
 
