@@ -34,8 +34,8 @@ Default to Chinese reports unless the user requests another language. Generated 
    **中：** 按新颖性、证据、可行性、因果可检验性、公共数据可用性和成文潜力排序。
 6. **EN:** Recommend one primary topic and one backup topic.  
    **中：** 推荐一个主课题和一个备选课题。
-7. **EN:** Save topic files and ask the user to choose when running inside `$co-manager`.  
-   **中：** 保存课题文件；在 `$co-manager` 中运行时请用户选择。
+7. **EN:** Save topic files and ask the user to choose when running inside `$co-paper`.  
+   **中：** 保存课题文件；在 `$co-paper` 中运行时请用户选择。
 
 Read `references/topic_schema.md` for schemas.  
 读取 `references/topic_schema.md` 获取课题卡和排序表格式。

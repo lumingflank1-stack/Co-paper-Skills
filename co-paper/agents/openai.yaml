@@ -1,0 +1,4 @@
+interface:
+  display_name: "Co-Paper"
+  short_description: "Orchestrate iterative paper co-scientist workflows"
+  default_prompt: "Use $co-paper to run an iterative literature-to-paper research workflow and save reports for each stage."

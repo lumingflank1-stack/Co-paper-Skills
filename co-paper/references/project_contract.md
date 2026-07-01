@@ -1,4 +1,4 @@
-# Co-Manager Project Contract
+# Co-Paper Project Contract
 
 Use this reference when creating a project workspace, continuing an iterative round, or assembling the final manuscript.
 

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Create a Co-Manager project workspace without overwriting existing files."""
+"""Create a Co-Paper project workspace without overwriting existing files."""
 
 from __future__ import annotations
 
@@ -50,7 +50,7 @@ def write_csv(path: Path, columns: list[str]) -> None:
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="Scaffold a Co-Manager project workspace.")
+    parser = argparse.ArgumentParser(description="Scaffold a Co-Paper project workspace.")
     parser.add_argument("--project", required=True, help="Project title")
     parser.add_argument("--out", required=True, help="Output project directory")
     parser.add_argument("--rounds", type=int, default=1, help="Number of round folders to create")
@@ -81,7 +81,7 @@ def main() -> None:
     write_text(out / "manuscript" / "virtual_result_rationale.md", "# 虚拟或假设结果解释\n\n如本项目使用虚拟或假设阳性结果，在此记录文献调研、公共数据可行性、创新性扫描、最接近既往工作、所选既可能成立又最有创新性的阳性结果轴、为什么不是直接重复，以及剩余不确定性。\n")
     write_text(out / "manuscript" / "full_manuscript.md", "# 中文全文初稿\n")
 
-    print(f"Created Co-Manager project workspace: {out}")
+    print(f"Created Co-Paper project workspace: {out}")
 
 
 if __name__ == "__main__":

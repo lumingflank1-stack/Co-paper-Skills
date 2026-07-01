@@ -1,6 +1,6 @@
 ---
 name: co-plan
-description: Design bioinformatics analysis plans, public dataset manifests, wet-lab experiments, virtual result prompts, and next-round decision rules for biomedical research topics or results. Use when Codex needs to plan analyses, list required public datasets, design validation experiments, interpret new results into next steps, or prepare iterative co-manager rounds. 用于设计公共数据分析、实验验证、虚拟结果 prompt 和下一轮决策规则。
+description: Design bioinformatics analysis plans, public dataset manifests, wet-lab experiments, virtual result prompts, and next-round decision rules for biomedical research topics or results. Use when Codex needs to plan analyses, list required public datasets, design validation experiments, interpret new results into next steps, or prepare iterative co-paper rounds. 用于设计公共数据分析、实验验证、虚拟结果 prompt 和下一轮决策规则。
 ---
 
 # Co-Plan / 分析与实验计划

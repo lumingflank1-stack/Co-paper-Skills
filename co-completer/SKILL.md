@@ -1,15 +1,15 @@
 ---
 name: co-completer
-description: Complete the final stage of an interactive biomedical or life-science paper workflow, or review, revise, supplement, and complete an existing manuscript. Use when Codex needs to replace the old post-manuscript independent-review endpoint with reviewer-style critique plus manuscript writing, completion judgment, dynamic branch/resume decisions, new project/subfolder creation, or one deeper co-search/co-distill round before closure. Also use when Codex needs to plan upstream/downstream mechanism extensions, recommend bioinformatics analyses and public datasets, recommend validation experiments, then use co-result to rewrite Results from real, assumed, or explicitly approved virtual results with red bold markup and Markdown plus Word export. 用于作为 co-manager 终稿后的完成器，执行审稿式批评、写作补全、完成判定、动态回跳/分支、新项目/子文件夹创建，或补充内容再做一轮 co-search/co-distill 后收尾；也用于已有论文审稿、修改建议、机制补强、生信和实验补充设计、结果重写、红色加粗标记和 md/docx 导出。
+description: Complete the final stage of an interactive biomedical or life-science paper workflow, or review, revise, supplement, and complete an existing manuscript. Use when Codex needs to replace the old post-manuscript independent-review endpoint with reviewer-style critique plus manuscript writing, completion judgment, dynamic branch/resume decisions, new project/subfolder creation, or one deeper co-search/co-distill round before closure. Also use when Codex needs to plan upstream/downstream mechanism extensions, recommend bioinformatics analyses and public datasets, recommend validation experiments, then use co-result to rewrite Results from real, assumed, or explicitly approved virtual results with red bold markup and Markdown plus Word export. 用于作为 co-paper 终稿后的完成器，执行审稿式批评、写作补全、完成判定、动态回跳/分支、新项目/子文件夹创建，或补充内容再做一轮 co-search/co-distill 后收尾；也用于已有论文审稿、修改建议、机制补强、生信和实验补充设计、结果重写、红色加粗标记和 md/docx 导出。
 ---
 
 # Co-Completer
 
 ## Operating Goal / 运行目标
 
-Turn a nearly complete manuscript into a review-driven completion package. In `$co-manager`, `$co-completer` is the final gate after `manuscript/full_manuscript.md`: it reviews, writes or rewrites what is needed, and then asks the user to choose whether to mark the project complete, branch/resume from an earlier checkpoint, or run one deeper research pass followed by `$co-search` and `$co-distill`. For standalone manuscripts, the sequence is strict: review first, propose changes second, wait for user approval third, then add revision text, bioinformatics supplements, experimental supplements, and revised Results. Default to Chinese for user-facing reports unless the manuscript itself is English; if the manuscript is English, write the manuscript-facing revision and Results in English.
+Turn a nearly complete manuscript into a review-driven completion package. In `$co-paper`, `$co-completer` is the final gate after `manuscript/full_manuscript.md`: it reviews, writes or rewrites what is needed, and then asks the user to choose whether to mark the project complete, branch/resume from an earlier checkpoint, or run one deeper research pass followed by `$co-search` and `$co-distill`. For standalone manuscripts, the sequence is strict: review first, propose changes second, wait for user approval third, then add revision text, bioinformatics supplements, experimental supplements, and revised Results. Default to Chinese for user-facing reports unless the manuscript itself is English; if the manuscript is English, write the manuscript-facing revision and Results in English.
 
-将接近完成的全文转化为一个“审稿驱动的完成包”。在 `$co-manager` 中，`$co-completer` 是 `manuscript/full_manuscript.md` 之后的最后关口：它负责审稿、必要写作或改写，然后让用户选择标记项目完成、从早期节点动态回跳/分支继续，或先做一轮更深入研究再调用 `$co-search` 和 `$co-distill` 后收尾。对独立已有论文，流程仍严格遵循：先审稿、再建议、等待用户同意、再补写。默认中文输出；如果原文是英文，论文正文、结果段落和图注使用英文。
+将接近完成的全文转化为一个“审稿驱动的完成包”。在 `$co-paper` 中，`$co-completer` 是 `manuscript/full_manuscript.md` 之后的最后关口：它负责审稿、必要写作或改写，然后让用户选择标记项目完成、从早期节点动态回跳/分支继续，或先做一轮更深入研究再调用 `$co-search` 和 `$co-distill` 后收尾。对独立已有论文，流程仍严格遵循：先审稿、再建议、等待用户同意、再补写。默认中文输出；如果原文是英文，论文正文、结果段落和图注使用英文。
 
 ## Core Workflow / 核心流程
 
@@ -107,7 +107,7 @@ When full manuscript changes are requested, also save:
 - For virtual Results, record virtual status in source ledgers and project notes; keep manuscript-facing paragraphs clean unless the user asks for visible labels.
 - If the manuscript is English, preserve English scientific style and only use Chinese in user-facing planning notes if helpful.
 - If public dataset IDs, reagent details, or current database availability matter, verify them live rather than relying on memory.
-- Do not close a `$co-manager` project silently after writing. Always present the completion decision menu unless the user has already specified the final route.
+- Do not close a `$co-paper` project silently after writing. Always present the completion decision menu unless the user has already specified the final route.
 - When branching or creating a new project/subfolder, preserve the original project files and write inherited-file notes; do not overwrite prior manuscripts unless the user explicitly requests overwrite.
 
 ## References / 参考文件

@@ -21,7 +21,7 @@ Use one or more / 使用以下一种或多种输入：
 - `$co-search` outputs / `$co-search` 输出。
 - A list of papers or DOIs / 论文列表或 DOI。
 - User-provided PDFs, abstracts, figures, or notes / 用户提供的 PDF、摘要、图或笔记。
-- A selected literature class from `$co-manager` / `$co-manager` 中选定的文献类别。
+- A selected literature class from `$co-paper` / `$co-paper` 中选定的文献类别。
 
 ## Workflow / 工作流
 

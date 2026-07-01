@@ -4,7 +4,7 @@ Use this reference after `manuscript/full_manuscript.md` is assembled, or when t
 
 ## Finalization Through `$co-completer`
 
-Do not let `$co-manager` end with a standalone independent review. After full manuscript assembly, hand off to `$co-completer`.
+Do not let `$co-paper` end with a standalone independent review. After full manuscript assembly, hand off to `$co-completer`.
 
 `$co-completer` must perform completion review and writing, then save:
 

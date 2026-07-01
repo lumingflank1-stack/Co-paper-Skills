@@ -1,6 +1,6 @@
 # Review and Revision Schema
 
-Use this reference when the task begins with an existing manuscript, reviewer comments, a `$co-manager` final manuscript, or a request to make the study more complete.
+Use this reference when the task begins with an existing manuscript, reviewer comments, a `$co-paper` final manuscript, or a request to make the study more complete.
 
 ## Intake Checklist
 

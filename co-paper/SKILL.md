@@ -1,15 +1,15 @@
 ---
-name: co-manager
+name: co-paper
 description: Orchestrate an interactive biomedical paper co-scientist workflow from literature search, classification, routine distillation, topic generation, public-data and experiment planning, iterative result interpretation, Results, Methods, Introduction, Discussion, full manuscript assembly, co-completer final review/writing, completion marking, dynamic branching/resume, and optional deeper co-search/co-distill supplement round. Use when Codex needs to coordinate co-search, co-distill, co-topic, co-plan, co-result, co-method, co-discussion, co-completer, save stage reports, or manage human checkpoints. 用于统筹从文献到全文、co-completer 终稿审稿写作、完成标记、动态回跳/分支和可选补充 co-search/co-distill 的多轮论文工作流。
 ---
 
-# Co-Manager / 论文工作流总控
+# Co-Paper / 论文工作流总控
 
 ## Operating Goal / 运行目标
 
-**English:** Run a stateful, interactive research-to-paper workflow. Co-Manager is the outer coordinator: it calls specialist skills, preserves provenance, stops at user decision points, and saves a report file for every stage.
+**English:** Run a stateful, interactive research-to-paper workflow. Co-Paper is the outer coordinator: it calls specialist skills, preserves provenance, stops at user decision points, and saves a report file for every stage.
 
-**中文：** 运行有状态、互动式的“研究到论文”工作流。Co-Manager 是外层总控：负责调用专门 skill、保留证据来源、在用户决策点暂停，并为每个阶段保存报告文件。
+**中文：** 运行有状态、互动式的“研究到论文”工作流。Co-Paper 是外层总控：负责调用专门 skill、保留证据来源、在用户决策点暂停，并为每个阶段保存报告文件。
 
 Default to Chinese for user-facing reports unless the user requests another language. Stage Markdown reports and `manuscript/full_manuscript.md` should be Chinese-only by default; do not create parallel English or bilingual versions unless explicitly requested.  
 除非用户要求其他语言，面向用户的报告默认使用中文。阶段性 Markdown 报告和 `manuscript/full_manuscript.md` 默认只写中文；除非用户明确要求，不创建英文或中英双语版本。
@@ -23,8 +23,8 @@ co-search -> user chooses class -> co-distill -> co-topic -> user chooses topic
 -> user chooses complete / dynamic branch-resume / deepen with one co-search+co-distill round
 ```
 
-**English:** Co-Manager manages state; inner skills perform specialist tasks.  
-**中文：** Co-Manager 负责状态和流程管理；内部 skill 负责专门任务。
+**English:** Co-Paper manages state; inner skills perform specialist tasks.  
+**中文：** Co-Paper 负责状态和流程管理；内部 skill 负责专门任务。
 
 ## Skill Routing / Skill 路由
 

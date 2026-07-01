@@ -42,8 +42,8 @@ Honor user constraints exactly: journal set, date window, disease, cell type, sp
    **中：** 按机制、模型、节点发现实验、组学策略、验证方式和文章套路分类。
 6. **EN:** Pick representative papers for each class.  
    **中：** 为每一类选择代表论文。
-7. **EN:** Save a report and ask the user to choose a class when used inside `$co-manager`.  
-   **中：** 保存报告；在 `$co-manager` 中运行时，请用户选择一个类别。
+7. **EN:** Save a report and ask the user to choose a class when used inside `$co-paper`.  
+   **中：** 保存报告；在 `$co-paper` 中运行时，请用户选择一个类别。
 
 Read `references/search_and_classification.md` for schemas and dimensions.  
 读取 `references/search_and_classification.md` 获取输出格式和分类维度。

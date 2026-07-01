@@ -2,9 +2,9 @@
 
 ## When to Use
 
-Use this guide when the user asks to call ChatGPT image generation, when `$co-result` is producing a full Results package, when virtual or assumed results are being prepared for manuscript drafting, when `$co-manager` is assembling a full manuscript, or when prompts for figure images are needed.
+Use this guide when the user asks to call ChatGPT image generation, when `$co-result` is producing a full Results package, when virtual or assumed results are being prepared for manuscript drafting, when `$co-paper` is assembling a full manuscript, or when prompts for figure images are needed.
 
-用户要求调用图片生成、`$co-result` 生成完整 Results 包、虚拟或假设结果进入论文撰写、`$co-manager` 组装全文，或需要图片 prompt 时，都使用本指南。
+用户要求调用图片生成、`$co-result` 生成完整 Results 包、虚拟或假设结果进入论文撰写、`$co-paper` 组装全文，或需要图片 prompt 时，都使用本指南。
 
 ## Execution
 
