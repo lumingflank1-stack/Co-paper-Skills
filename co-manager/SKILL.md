@@ -1,6 +1,6 @@
 ---
 name: co-manager
-description: Orchestrate an interactive biomedical paper co-scientist workflow from literature search, classification, routine distillation, topic generation, public-data and experiment planning, iterative result interpretation, Results, Methods, Introduction, Discussion, full manuscript assembly, independent manuscript review, and dynamic post-review branching/resume. Use when Codex needs to coordinate co-search, co-distill, co-topic, co-plan, co-result, co-method, co-discussion, academic-paper-reviewer, save stage reports, or manage human checkpoints. 用于统筹从文献到全文、独立审稿和审稿后回跳迭代的多轮论文工作流。
+description: Orchestrate an interactive biomedical paper co-scientist workflow from literature search, classification, routine distillation, topic generation, public-data and experiment planning, iterative result interpretation, Results, Methods, Introduction, Discussion, full manuscript assembly, co-completer final review/writing, completion marking, dynamic branching/resume, and optional deeper co-search/co-distill supplement round. Use when Codex needs to coordinate co-search, co-distill, co-topic, co-plan, co-result, co-method, co-discussion, co-completer, save stage reports, or manage human checkpoints. 用于统筹从文献到全文、co-completer 终稿审稿写作、完成标记、动态回跳/分支和可选补充 co-search/co-distill 的多轮论文工作流。
 ---
 
 # Co-Manager / 论文工作流总控
@@ -19,8 +19,8 @@ Default to Chinese for user-facing reports unless the user requests another lang
 ```text
 co-search -> user chooses class -> co-distill -> co-topic -> user chooses topic
 -> co-plan -> analysis or experiment round(s) -> co-result -> co-method
--> co-discussion -> full manuscript assembly -> independent review
--> user chooses revise / branch / resume from an earlier checkpoint
+-> co-discussion -> full manuscript assembly -> co-completer
+-> user chooses complete / dynamic branch-resume / deepen with one co-search+co-distill round
 ```
 
 **English:** Co-Manager manages state; inner skills perform specialist tasks.  
@@ -42,8 +42,8 @@ co-search -> user chooses class -> co-distill -> co-topic -> user chooses topic
   **中：** Results 成稿后再用 `$co-method`，确保 Methods 对应实际图版和结果。
 - **EN:** Use `$co-discussion` after Results are stable so Introduction and Discussion are evidence-framed and cited.  
   **中：** Results 稳定后再用 `$co-discussion`，让引言和讨论围绕真实证据和编号引用展开。
-- **EN:** Use `$academic-paper-reviewer` or the final-review contract after `manuscript/full_manuscript.md` is assembled to produce an independent review, rigor/novelty/newsworthiness assessment, editorial decision, and revision/resume roadmap.  
-  **中：** `manuscript/full_manuscript.md` 组装后，用 `$academic-paper-reviewer` 或终稿审稿契约生成独立审稿、严谨性/创新性/新闻性评估、编辑决定和修订/回跳路线图。
+- **EN:** Use `$co-completer` after `manuscript/full_manuscript.md` is assembled. It replaces the old outer final independent-review endpoint: it performs completion review, needed writing/revision, final-readiness judgment, and then asks whether to mark the project complete, dynamically branch/resume, or deepen with one `$co-search` + `$co-distill` supplement round.  
+  **中：** `manuscript/full_manuscript.md` 组装后调用 `$co-completer`。它替代旧的外层“终稿后独立审稿”终点：负责完成审稿、必要写作/修订、终稿就绪判断，然后询问用户是标记项目完成、动态回跳/分支继续，还是进一步深入分析并补跑一轮 `$co-search` + `$co-distill`。
 
 If a named skill is unavailable, continue with the same output contract and state the gap.  
 如果某个被点名的 skill 不可用，继续按同一输出契约完成，并说明缺口。
@@ -73,7 +73,7 @@ Stop for user choice unless the user explicitly says to continue automatically.
 3. After every `$co-plan` round: choose public-data analysis, node-discovery experiment, validation experiment, or virtual-result simulation / 每轮 `$co-plan` 后选择公共数据分析、节点发现实验、验证实验或虚拟结果模拟。
 4. Before `$co-result` generates virtual positive results, confirm the literature/public-data feasibility and novelty rationale, the closest prior work, and the selected positive result axis that is both plausible and maximally innovative / `$co-result` 生成虚拟阳性结果前，确认文献/公共数据可行性和创新性解释、最接近既往工作，以及既可能成立又最有创新性的阳性结果轴。
 5. Before final manuscript assembly, confirm the source ledger exists for any simulation-only major claim / 组装全文前，确认任何仅基于模拟的重要 claim 都已有来源账本记录。
-6. After independent review, ask the user to choose one next path: revise current manuscript, return to literature class selection, return to topic generation, continue from a selected Figure/result/experiment node, or start a branched manuscript version / 独立审稿后，让用户选择下一步：修订当前全文、回到文献类别选择、回到课题生成、从某个 Figure/结果/实验节点继续，或开启一个分支稿件版本。
+6. After `$co-completer`, ask the user to choose one terminal route: `complete_project`, `dynamic_branch`, or `deepen_then_close` / `$co-completer` 结束后，让用户选择一个终态路线：标记项目完成、动态回跳/分支，或进一步深入研究后补跑一轮检索/蒸馏再收尾。
 
 ## Round Logic / 迭代逻辑
 
@@ -102,11 +102,11 @@ Never force a positive narrative when a result is neutral or contradictory.
 3. `$co-discussion`: `manuscript/introduction.md`, `manuscript/discussion.md`, numbered references / 撰写引言、讨论和编号参考文献。
 4. `manuscript/full_manuscript.md`: one Chinese full manuscript by default, including title placeholder, abstract placeholder, Introduction, Results, Discussion, Methods, References, and figure legends / 默认只生成一个中文全文，包括标题占位、摘要占位、引言、结果、讨论、方法、参考文献和图注。
 5. `manuscript/figures/Figure_*.png`: generated planning or manuscript figures when image generation is available; otherwise save figure prompts and blockers / 图片生成可用时保存规划图或论文图；否则保存图片 prompt 和阻断说明。
-6. `manuscript/independent_peer_review.md`: independent review of rigor, novelty, newsworthiness, journal fit, risks, and revision roadmap / 独立审稿，评估严谨性、创新性、新闻性、期刊匹配度、风险和修订路线图。
-7. `manuscript/iteration_resume_plan.md`: post-review dynamic continuation options and branch/resume targets / 审稿后的动态继续选项和分支/回跳目标。
+6. `$co-completer`: `manuscript/completion_review.md`, `manuscript/completion_revision_plan.md`, `manuscript/completion_decision_menu.md`, and any marked revisions or branch/deepening plans / 调用 `$co-completer` 生成完成审稿、完成修订计划、完成决策菜单，以及必要的红色标记修订或分支/深入研究计划。
+7. If the user chooses `complete_project`, save `manuscript/project_completion_record.md`; if `dynamic_branch`, create a new project/subfolder under `branches/`; if `deepen_then_close`, run one focused `$co-search` and `$co-distill` cycle for the supplement content, save outputs, then return to completion decision / 如果用户选择完成，保存完成记录；如果选择动态分支，在 `branches/` 下创建新项目/子文件夹；如果选择深入后收尾，则针对补充内容运行一次聚焦 `$co-search` 和 `$co-distill`，保存输出后回到完成决策。
 
-Read `references/final_review_and_dynamic_resume.md` before running the final review or resuming from a post-review checkpoint.  
-终稿审稿或审稿后回跳继续前，读取 `references/final_review_and_dynamic_resume.md`。
+Read `references/final_review_and_dynamic_resume.md` before invoking `$co-completer` or resuming from a completion checkpoint.  
+调用 `$co-completer` 或从完成检查点继续前，读取 `references/final_review_and_dynamic_resume.md`。
 
 Keep simulation status in project reports and source ledgers even when manuscript-facing prose is written in conventional Results style.  
 即使论文正文按常规 Results 风格书写，也要在项目报告和来源账本中保留模拟结果状态。

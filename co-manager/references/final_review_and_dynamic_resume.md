@@ -1,55 +1,45 @@
-# Final Review and Dynamic Resume
+# Co-Completer Finalization and Dynamic Resume
 
-Use this reference after `manuscript/full_manuscript.md` is assembled, or when the user wants to continue from a middle checkpoint after review.
+Use this reference after `manuscript/full_manuscript.md` is assembled, or when the user wants to continue from a middle checkpoint after `$co-completer`.
 
-## Final Independent Review
+## Finalization Through `$co-completer`
 
-Generate `manuscript/independent_peer_review.md` by default. Use `$academic-paper-reviewer` when available; otherwise follow this contract directly.
+Do not let `$co-manager` end with a standalone independent review. After full manuscript assembly, hand off to `$co-completer`.
 
-The review must evaluate:
+`$co-completer` must perform completion review and writing, then save:
 
-- rigor / 严谨性;
-- novelty / 创新性;
-- newsworthiness or story value / 新闻性;
-- target-journal fit / 目标期刊匹配度;
-- evidence sufficiency and source mode / 证据充分性和来源模式;
-- decisive missing experiments and analyses / 关键缺失实验和分析;
-- whether the manuscript is ready for real submission, only suitable as a planning scaffold, or should branch to another workflow path / 是否可真实投稿、仅适合作为规划稿，或应分支到其他流程。
+- `manuscript/completion_review.md`: rigor, novelty, newsworthiness, journal fit, evidence sufficiency, source modes, missing experiments, and final readiness.
+- `manuscript/completion_revision_plan.md`: accepted or proposed writing/revision/supplement plan.
+- `manuscript/completion_decision_menu.md`: the user's terminal-route choices.
+- marked manuscript or Results files if writing/revision is performed.
 
-If any major claim still uses `virtual_positive_results` or `assumed_results`, explicitly judge the manuscript as not ready for real evidence submission, while still evaluating the value of the project plan.
+If any major claim still uses `virtual_positive_results` or `assumed_results`, `$co-completer` must explicitly judge the manuscript as not ready for real evidence submission, while still evaluating the value of the project plan.
 
-Recommended files:
+## Completion Decision Menu
 
-- `manuscript/independent_peer_review.md`
-- `manuscript/iteration_resume_plan.md`
-- optional `manuscript/revision_checklist.csv`
+After `$co-completer` review/writing, stop and ask the user to choose one route unless they asked to continue automatically:
 
-## Dynamic Resume Menu
-
-After review, stop and ask the user to choose one route unless they asked to continue automatically:
-
-1. **Revise current manuscript**: use review comments to regenerate affected sections and figures.
-2. **Return to literature class**: go back to `01_search/` and choose a different class or rerun `$co-search`.
-3. **Return to topic generation**: reuse `02_distill/` and call `$co-topic` again.
-4. **Continue from a result/Figure node**: select a Figure, panel, result, node-discovery experiment, validation experiment, or contradictory result, then call `$co-plan`.
-5. **Create a branch**: start `branches/YYYYMMDD_<resume_target>/` and write new outputs there without overwriting the previous manuscript.
+1. **Mark project complete (`complete_project`)**: save `manuscript/project_completion_record.md`, listing final manuscript, figures, ledgers, source modes, review/writing files, and completion date.
+2. **Dynamic branch/resume (`dynamic_branch`)**: return to literature class selection, topic generation, plan, selected Figure/result/experiment node, or manuscript revision; create a new project or subfolder under `branches/YYYYMMDD_<target>/` or a user-named folder.
+3. **Deepen then close (`deepen_then_close`)**: after `$co-completer` review/writing, define one deeper research or supplement question, run one focused `$co-search` and one `$co-distill` cycle, save supplement reports, then return to the completion decision or mark complete.
 
 ## Resume State
 
-Write `iteration_resume_plan.md` with:
+Write `completion_decision_menu.md` with:
 
 ```markdown
-# Iteration Resume Plan
+# Completion Decision Menu
 
 - Current manuscript:
-- Review file:
-- Recommended decision:
-- Available resume targets:
-- User-selected target:
-- Files inherited:
-- Files to regenerate:
-- New output folder:
-- Stop/go criteria:
+- Completion review:
+- Completion revision/writing:
+- Recommended route:
+- Route A complete_project:
+- Route B dynamic_branch:
+- Route C deepen_then_close:
+- User-selected route:
+- Output folder if branching:
+- Stop/go criteria for closure:
 ```
 
 ## Branching Rules
@@ -58,3 +48,4 @@ Write `iteration_resume_plan.md` with:
 - Keep `source_mode_ledger.csv` and `evidence_ledger.csv` linked or copied into the branch.
 - When resuming from a Figure/result, preserve the original Figure ID in the branch state, then assign new IDs only when the manuscript structure changes.
 - If the user chooses a different literature class, treat it as a new branch, not a silent replacement of the prior class.
+- If the user chooses `deepen_then_close`, keep the cycle bounded to one `$co-search` plus one `$co-distill` unless the user explicitly asks for another round.
