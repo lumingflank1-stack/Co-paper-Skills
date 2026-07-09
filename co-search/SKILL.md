@@ -1,24 +1,22 @@
 ---
 name: co-search
-description: Search, screen, classify, and summarize biomedical literature into topic classes and evidence ledgers. Use when Codex needs to find papers, build literature matrices, compare directions, classify mechanisms, identify representative papers, or create a literature report for downstream co-distill or co-topic workflows. 用于文献检索、筛选、分类、代表论文选择和证据账本构建。
+description: "Search, screen, and summarize biomedical literature by innovation points rather than complete paper routines. Use in co-paper when Codex needs to classify literature innovations into five module families: new phenotype, new mechanism, new molecule type, new experimental method, and new bioinformatics analysis, then ask the user to choose one module for co-plan. 用于文献检索并按五类创新点分类：新表型、新机制、新分子类型、新实验方法、新生信分析；不再按整篇文章套路或完整课题类别分类。"
 ---
 
-# Co-Search / 文献检索与分类
+# Co-Search / 文献创新点检索
 
 ## Operating Goal / 运行目标
 
-**English:** Retrieve, screen, classify, and summarize biomedical literature so the user can choose a research class for downstream routine distillation.
+**English:** Retrieve, screen, and summarize biomedical literature so the user can choose one innovation module for downstream `$co-plan`. Do not classify whole papers into complete article routines for `$co-paper`.
 
-**中文：** 检索、筛选、分类并总结生物医学文献，让用户选择一个研究类别，供后续文章套路蒸馏使用。
+**中文：** 检索、筛选并总结生物医学文献，让用户从文献创新点中选择一个模块进入 `$co-plan`。在 `$co-paper` 主流程中，不再把整篇文献分类为完整文章套路。
 
 Default to Chinese reports unless the user asks otherwise. Generated Markdown reports should be Chinese-only by default; do not create bilingual project reports unless explicitly requested.  
 除非用户另有要求，报告默认使用中文。生成的 Markdown 报告默认只写中文；除非用户明确要求，不生成中英双语项目报告。
 
 ## Search Rules / 检索规则
 
-**English:** Use current literature search unless the user provides a fixed corpus or forbids browsing. Prefer primary sources and structured databases.
-
-**中文：** 除非用户提供固定文献集或禁止联网，否则使用当前文献检索。优先使用原始来源和结构化数据库。
+Use current literature search unless the user provides a fixed corpus or forbids browsing. Prefer primary sources and structured databases.
 
 - PubMed or Europe PMC for biomedical papers / 生物医学论文优先 PubMed 或 Europe PMC。
 - BioRxiv or medRxiv only when preprints are allowed / 只有允许预印本时才使用 bioRxiv 或 medRxiv。
@@ -30,57 +28,53 @@ Honor user constraints exactly: journal set, date window, disease, cell type, sp
 
 ## Workflow / 工作流
 
-1. **EN:** Define the search question and constraints.  
-   **中：** 明确检索问题和约束。
-2. **EN:** Build fielded queries with synonyms, abbreviations, and exclusion terms.  
-   **中：** 用同义词、缩写和排除词构建字段化检索式。
-3. **EN:** Screen titles and abstracts against criteria.  
-   **中：** 按纳入/排除标准筛选题目和摘要。
-4. **EN:** Extract a literature matrix.  
-   **中：** 提取文献矩阵。
-5. **EN:** Classify papers by mechanism, model, node-discovery experiment, omics strategy, validation style, and article routine.  
-   **中：** 按机制、模型、节点发现实验、组学策略、验证方式和文章套路分类。
-6. **EN:** Pick representative papers for each class.  
-   **中：** 为每一类选择代表论文。
-7. **EN:** Save a report and ask the user to choose a class when used inside `$co-paper`.  
-   **中：** 保存报告；在 `$co-paper` 中运行时，请用户选择一个类别。
+1. Define the search question and constraints.
+2. Build fielded queries with synonyms, abbreviations, and exclusion terms.
+3. Screen titles and abstracts against criteria.
+4. Extract a literature matrix.
+5. Extract innovation points from each relevant paper.
+6. Classify innovation points into five module families:
+   - `new_phenotype`
+   - `new_mechanism`
+   - `new_molecule_type`
+   - `new_experimental_method`
+   - `new_bioinformatics_analysis`
+7. Save a module-oriented report and ask the user to choose one innovation module when used inside `$co-paper`.
 
 Read `references/search_and_classification.md` for schemas and dimensions.  
 读取 `references/search_and_classification.md` 获取输出格式和分类维度。
 
-## Classification Dimensions / 分类维度
+## Innovation Families / 五类创新点
 
-- Disease or biological context / 疾病或生物学背景。
-- Cell type, tissue, organ, or model system / 细胞类型、组织、器官或模型系统。
-- Molecular axis or pathway / 分子轴或通路。
-- Omics or public-data strategy / 组学或公共数据策略。
-- Node-discovery experiment: how the paper discovers downstream molecules, mechanism nodes, or phenotype-linked mediators / 节点发现实验：论文如何发现下游分子、机制节点或表型关联介质。
-- Experimental validation ladder / 实验验证阶梯。
-- Figure logic and article routine / 图版逻辑和文章套路。
-- Novelty move: target, cell state, dataset integration, intervention, disease framing / 创新动作：新靶点、新细胞状态、新数据整合、新干预或新疾病框架。
+- `new_phenotype`: disease phenotype, cell state, spatial pattern, pathological process, clinical subgroup, or functional readout.
+- `new_mechanism`: pathway, causal loop, cell-cell interaction, metabolic route, immune axis, stress response, transcriptional regulation, epigenetic regulation, or PTM logic.
+- `new_molecule_type`: molecule class rather than necessarily one named target, such as cytokine, receptor, metabolite, lipid mediator, lncRNA, circRNA, enzyme, transporter, PTM regulator, ECM factor, or extracellular vesicle cargo.
+- `new_experimental_method`: model, perturbation, screen, omics assay, spatial method, organoid/co-culture system, direct binding assay, imaging assay, or validation ladder.
+- `new_bioinformatics_analysis`: public-data strategy, single-cell/spatial analysis, multi-omics integration, network method, causal inference, perturbation signature, or patient-stratification analysis.
 
 ## Evidence Discipline / 证据纪律
 
-Separate / 区分：
+Separate:
 
-- Literature observation / 文献观察。
-- Author interpretation / 作者解释。
-- Public database annotation / 公共数据库注释。
-- Computational inference / 计算推断。
-- Perturbation evidence / 扰动证据。
-- Direct causal validation / 直接因果验证。
+- Literature observation.
+- Author interpretation.
+- Public database annotation.
+- Computational inference.
+- Perturbation evidence.
+- Direct causal validation.
 
 Do not treat Discussion claims as proven mechanisms unless Results directly validate them.  
 除非 Results 中直接验证，否则不要把 Discussion 里的观点当作已证明机制。
 
 ## Required Outputs / 必要输出
 
-Save in `01_search/` or the chosen directory / 保存到 `01_search/` 或指定目录：
+Save in `01_search/` or the chosen directory:
 
 - `search_strategy.md`
 - `literature_matrix.csv`
-- `topic_classes.md`
-- `representative_papers.md`
+- `innovation_points.md`
+- `innovation_point_matrix.csv`
+- `module_options.md`
 - `evidence_ledger.csv`
 - `exclusion_log.csv`
 

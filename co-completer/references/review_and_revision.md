@@ -29,7 +29,7 @@ Save `completion_review.md` by default. If the user explicitly asks for a classi
 7. `Statistics and Reproducibility`: sample size, biological replicate, donor or animal unit, batch, normalization, multiple testing, blinding/randomization when relevant.
 8. `Alternative Explanations`: at least one plausible alternative for every main mechanism.
 9. `Decisive Missing Evidence`: the smallest set of analyses or experiments that would materially improve the manuscript.
-10. `Completion Readiness`: one of `ready_to_complete`, `complete_after_minor_writing`, `needs_branch_or_more_data`, or `needs_deeper_search_distill`.
+10. `Completion Readiness`: one of `ready_to_complete`, `complete_after_minor_writing`, `needs_branch_or_more_data`, or `needs_new_module_loop`.
 
 ## Revision Recommendation Output
 
@@ -77,19 +77,19 @@ After accepted review-driven writing or revision, save `completion_decision_menu
 - Inherited files:
 - First next skill:
 
-## Route C: Deepen Then Close
-- Deeper analysis/research question:
+## Route C: New Module Loop
+- Next downstream module question:
 - One `$co-search` target:
-- One `$co-distill` target:
-- Expected supplement output:
+- One `$co-plan` target:
+- Expected `$co-result` output:
 - Stop condition:
 ```
 
 Route definitions:
 
 - `complete_project`: write `project_completion_record.md`, mark the final manuscript path, source ledgers, figures, review, and completion date.
-- `dynamic_branch`: create or propose `branches/YYYYMMDD_<target>/` or a user-named new project/subfolder; resume from literature class, topic, plan, Figure/result, node-discovery, validation, or manuscript revision checkpoint.
-- `deepen_then_close`: use `$co-completer` review/writing to define one deeper research question, run one focused `$co-search` and `$co-distill` cycle for the supplement content or routine, save the supplement reports, then close or ask for final confirmation.
+- `dynamic_branch`: create or propose `branches/YYYYMMDD_<target>/` or a user-named new project/subfolder; resume from a module, plan, Figure/result, node-discovery, validation, or manuscript revision checkpoint.
+- `new_module_loop`: define one downstream module question, run `$co-search` to classify innovation points, ask the user to choose one module, run `$co-plan`, then close that module with `$co-result`.
 
 ## Review Tone
 

@@ -7,9 +7,9 @@ description: Distill biomedical papers into reusable research routines, figure l
 
 ## Operating Goal / 运行目标
 
-**English:** Turn a selected paper class into a reusable research routine. Distill structure, evidence ladder, data strategy, and figure logic without copying the original biological topic too literally.
+**English:** Turn a selected paper class into a reusable research routine. Distill structure, evidence ladder, data strategy, figure logic, phenotypes, and node-discovery methods without copying the original biological topic too literally. Co-Distill must not present already-studied source-paper molecules as the new topic's core target. When handing off to topic generation, unresolved core targets or mechanism molecules should be represented as `???` placeholders to be discovered later.
 
-**中文：** 将选定文献类别转化为可复用的研究套路。蒸馏文章结构、证据阶梯、数据策略和图版逻辑，但不要机械复制原始生物学主题。
+**中文：** 将选定文献类别转化为可复用的研究套路。蒸馏文章结构、证据阶梯、数据策略、图版逻辑、前沿表型和节点发现方法，但不要机械复制原始生物学主题。Co-Distill 不能把来源论文已经研究过的分子直接当作新课题核心靶点。交给课题生成时，尚未被本项目发现的核心靶点或机制分子应写成 `???` 占位，留到后续生信分析或实验计划中发现。
 
 Default to Chinese reports unless the user requests another language. Generated Markdown reports should be Chinese-only by default; do not create bilingual project reports unless explicitly requested.  
 除非用户要求其他语言，报告默认使用中文。生成的 Markdown 报告默认只写中文；除非用户明确要求，不生成中英双语项目报告。
@@ -31,13 +31,15 @@ Use one or more / 使用以下一种或多种输入：
    **中：** 提取共同生物学问题和创新动作。
 3. **EN:** Reconstruct the article routine: public-data entry, node-discovery experiment, computational discovery, validation ladder, mechanism test, and translational relevance.  
    **中：** 重建文章套路：公共数据入口、节点发现实验、计算发现、验证阶梯、机制测试和转化相关性。
-4. **EN:** Map figure order and the job of each panel.  
+4. **EN:** Abstract known source-paper molecules into `???` discovery slots for new-topic handoff. Keep exact source molecules only as known examples, positive controls, exclusion items, or family-level hints, not as proposed novel targets.
+   **中：** 把来源论文中已经研究过的具体分子抽象成新课题交接用的 `???` 待发现槽位。具体来源分子只能作为已知例子、阳性对照、排除项或家族级提示，不能作为新课题拟创新靶点。
+5. **EN:** Map figure order and the job of each panel.
    **中：** 映射图版顺序和每个 panel 的功能。
-5. **EN:** Identify reusable datasets, node-discovery experiments, validation experiments, models, perturbations, and statistics.  
+6. **EN:** Identify reusable datasets, node-discovery experiments, validation experiments, models, perturbations, and statistics.
    **中：** 识别可复用的数据集、节点发现实验、验证实验、模型、扰动和统计方法。
-6. **EN:** Separate what should be copied as a routine from what should not be copied as a topic.  
+7. **EN:** Separate what should be copied as a routine from what should not be copied as a topic.
    **中：** 区分可复刻的套路和不应照搬的课题内容。
-7. **EN:** Save the distilled routine and hand it to `$co-topic`.  
+8. **EN:** Save the distilled routine and hand it to `$co-topic`.
    **中：** 保存蒸馏套路，并交给 `$co-topic`。
 
 Read `references/routine_schema.md` for table schemas.  
@@ -55,6 +57,8 @@ Read `references/routine_schema.md` for table schemas.
   **中：** 输入是一类论文时，不要过拟合到单篇文章。
 - **EN:** Identify reviewer risks and missing controls in the original routine.  
   **中：** 识别原套路中的审稿风险和缺失对照。
+- **EN:** Use the `???` placeholder rule for new-topic handoff. If a molecule, pathway node, ligand, receptor, metabolite, transcription factor, enzyme, transporter, PTM site, or drug target has already been directly studied by the source papers or very close prior work, do not recommend it as the new topic's core molecule. Write the core unknown as `???`, then describe the allowed search space at family or module level, such as kinase-like node, secreted ECM ligand, lactate transporter family, GPCR ligand, lipid-metabolism mediator, macrophage-derived cytokine, PTM enzyme, or spatial-neighborhood mediator.
+  **中：** 新课题交接必须使用 `???` 占位规则。如果某个分子、通路节点、配体、受体、代谢物、转录因子、酶、转运体、修饰位点或药物靶点已经被来源论文或非常接近的既往工作直接研究过，不要把它推荐为新课题核心分子。核心未知对象写成 `???`，再用家族或模块层面的描述限定可能范围，例如 kinase-like node、分泌型 ECM 配体、乳酸转运体家族、GPCR 配体、脂质代谢介质、巨噬细胞来源细胞因子、PTM 酶或空间邻域介质。
 - **EN:** Always separate node-discovery experiments from validation experiments. Node-discovery experiments explain how the paper found downstream molecules, mechanism mediators, or phenotype-linked nodes, such as screening omics, perturbation omics after conditional knockout/knockdown, proteomics/phosphoproteomics/secretomics/metabolomics, IP-MS/pull-down-MS, spatial/cell-cell screening, CRISPR/RNAi screens, or target-fishing assays. Validation experiments then prove or test the node, and important examples must be emphasized: conditional knockout or tissue/cell-specific knockout, knockdown/overexpression, rescue, neutralization, inhibitor/agonist, mass-spectrometry validation such as targeted MS/PRM/SRM, Co-IP-MS, IP-MS or pull-down-MS confirmation, SPR/BLI/ITC molecular interaction assays, Co-IP, CETSA/DARTS, reporter assays, and phenotype rescue.  
   **中：** 必须区分“节点发现实验”和“验证实验”。节点发现实验回答论文如何发现下游分子、机制介质或表型关联节点，例如筛选组学、条件性敲除/敲低后的扰动组学、蛋白组/磷酸化组/分泌组/代谢组、IP-MS/pull-down-MS、空间/细胞互作筛选、CRISPR/RNAi screen 或 target-fishing 实验。验证实验再证明或检验该节点，且必须强调重要验证实验：条件性敲除或组织/细胞特异性敲除、敲低/过表达、rescue、中和、抑制剂/激动剂、质谱验证如 targeted MS/PRM/SRM、Co-IP-MS、IP-MS 或 pull-down-MS 确认、SPR/BLI/ITC 分子互作检测、Co-IP、CETSA/DARTS、报告基因和表型 rescue。
 
@@ -69,6 +73,7 @@ Save in `02_distill/` or the requested directory / 保存到 `02_distill/` 或�
 - `novelty_and_gap_map.md`
 - `replication_template.md`
 - `reviewer_risk_ledger.md`
+- `unknown_node_handoff.md` with `???` slots, excluded known molecules, family-level hints, and discovery routes / `unknown_node_handoff.md`，记录 `???` 槽位、已知分子排除表、家族级提示和发现路线
 - `evidence_ledger_update.csv`
 
 If figures are needed but not generated, save `figure_reconstruction_prompts.md`.  

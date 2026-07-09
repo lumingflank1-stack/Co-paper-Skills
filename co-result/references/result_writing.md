@@ -17,13 +17,22 @@ For each experiment, extract:
 7. The claim strength.
 8. The source mode: input, assumed, simulated, or requirements-only.
 
+For each module, also extract:
+
+1. Module relationship: standalone, parallel, progressive upstream, or progressive downstream.
+2. Node-discovery layer: the omics, public-data, screen, high-throughput assay, or broad experiment that found the new node/readout.
+3. Validation layer: the perturbation of the upstream/input side and the downstream/output readout.
+4. Rescue layer when testing a mediator.
+5. Layer status: real, partial, assumed, simulated with approval, requirements-only, or missing.
+
 Write in the order of evidence, not in the order of experimental operations when the logic would read better otherwise. A common order is:
 
 1. Rationale or model panel.
-2. Representative assay result.
-3. Quantification or statistics.
-4. Orthogonal validation.
-5. Integrative conclusion and boundary.
+2. Node-discovery assay or analysis.
+3. Quantification or candidate selection.
+4. Perturbation validation with downstream readout.
+5. Rescue or orthogonal validation when the claim requires it.
+6. Integrative conclusion and boundary.
 
 ## Chinese Style
 
@@ -55,6 +64,9 @@ Use direct claim language only when the assay supports it:
 | Quantification with replicates | `显著升高/降低` | exact P if not available |
 | Schematic | `模型示意`, `提出工作模型` | `证明` |
 | Transcriptomics correlation | `相关`, `一致`, `候选轴` | `导致`, `驱动`, unless perturbation evidence exists |
+| Omics or screen discovery only | `筛选得到`, `提示候选节点`, `优先验证对象` | `证明关键机制`, unless validation also shown |
+| Upstream perturbation plus downstream readout | `支持该上游因素调控下游表型/通路` | `证明中介`, unless rescue is shown |
+| Mediator perturbation plus rescue | `支持该节点作为中介环节` | `完全解释`, unless alternatives are ruled out |
 
 ## Missing Numeric Details
 

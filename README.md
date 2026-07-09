@@ -2,9 +2,9 @@
 
 ## Overview / 概览
 
-**English:** `co-paper` is the overall skill collection and top-level coordinator for interactive biomedical paper ideation, evidence planning, result writing, methods drafting, manuscript assembly, completion review, dynamic branching, and optional deeper co-search/co-distill rounds.
+**English:** `co-paper` is the overall skill collection and top-level coordinator for modular biomedical paper building. It advances one research module at a time: literature innovation search, user-selected module planning, module Results writing, next-module decision, final manuscript assembly, completion review, and dynamic branching.
 
-**中文：** `co-paper` 是这套互动式生物医学论文构思、证据规划、结果撰写、方法撰写、全文组装、完成审稿、动态分支和可选补充 co-search/co-distill 的总 skill 集名称与顶层入口。
+**中文：** `co-paper` 是这套“按模块递进”的生物医学论文工作流总入口。它一次只推进一个研究模块：文献创新点检索、用户选择模块、模块计划、模块 Results、下一模块决策、最终全文组装、完成审稿和动态分支。
 
 **English:** This collection supersedes the earlier single `co-scientist` style skill. The recommended entry point is now `$co-paper`; `biomedical-co-scientist` is kept as a lower-level hypothesis and interpretation engine for compatibility.
 
@@ -22,9 +22,9 @@
 
 **中文：** `co-method` 是一个根据论文摘要和结果用中文精简撰写生物医学论文“材料与方法”的 Codex skill。它默认联网优先从中国公司补全特异性试剂、抗体、qPCR 引物、shRNA/siRNA/sgRNA 靶向序列、细胞系、仪器、软件版本、R 包/软件编号文献引用、货号、公司和国家，并按医学论文和 Nature-style 可复现写法输出。
 
-**English:** `co-paper` is the upper-level interactive paper workflow. It coordinates `co-search`, `co-distill`, `co-topic`, `co-plan`, `co-result`, `co-method`, `co-discussion`, and `co-completer` to move from literature search to classified paper routines, topic generation, public-data or experiment rounds, Results, Methods, Introduction, Discussion, full manuscript assembly, completion review/writing, completion marking, dynamic branching, or one deeper co-search/co-distill supplement round.
+**English:** `co-paper` is the upper-level modular paper workflow. It coordinates `co-search`, `co-plan`, `co-result`, `co-method`, `co-discussion`, and `co-completer`. `$co-search` classifies literature innovation points into five module families: new phenotype, new mechanism, new molecule type, new experimental method, and new bioinformatics analysis. The user chooses one module, `$co-plan` designs its relationship plus discovery and validation layers, `$co-result` closes it with both layers represented, and the user decides the next downstream/upstream/parallel module or final manuscript assembly.
 
-**中文：** `co-paper` 是上层互动式论文工作流。它负责协调 `co-search`、`co-distill`、`co-topic`、`co-plan`、`co-result`、`co-method`、`co-discussion` 和 `co-completer`，从文献检索分类开始，经过文章套路蒸馏、课题生成、公共数据或实验迭代、结果撰写、方法撰写、引言/讨论撰写、全文组装、完成审稿/写作、完成标记、动态分支，或进一步深入后补跑一轮 co-search/co-distill。
+**中文：** `co-paper` 是上层模块化论文工作流。它协调 `co-search`、`co-plan`、`co-result`、`co-method`、`co-discussion` 和 `co-completer`。`$co-search` 只按五类创新点分类：新表型、新机制、新分子类型、新实验方法、新生信分析。用户选择一个模块后，`$co-plan` 设计模块关系以及发现层和验证层，`$co-result` 在两层证据均被表示后结束该模块，再由用户决定下一下游/上游/并列模块或进入最终全文组装。
 
 **English:** `co-completer` is a targeted workflow for strengthening an existing manuscript. It first performs independent reviewer-style critique, then proposes revision and supplement plans, waits for user approval, plans upstream/downstream or deeper mechanism work, recommends bioinformatics analyses and public datasets, recommends supplemental experiments and required data, and finally hands confirmed real, assumed, or explicitly approved virtual results to `co-result` for marked Results rewriting and Markdown/DOCX export.
 
@@ -51,10 +51,11 @@ Generate -> Debate -> Rank -> Test -> Analyze -> Revise -> Translate
 **Co-Paper workflow / Co-Paper 论文工作流：**
 
 ```text
-co-search -> user selects class -> co-distill -> co-topic -> user selects topic
--> co-plan -> analysis or experiment rounds -> co-result -> co-method
--> co-discussion -> full manuscript -> co-completer
--> complete project / dynamic branch-resume / deepen with one co-search+co-distill round
+co-search -> user selects one innovation module -> co-plan -> co-result
+-> user chooses next downstream module or ends project
+-> if continuing: repeat co-search -> co-plan -> co-result
+-> if ending: final co-result -> co-method -> co-discussion
+-> full manuscript -> co-completer
 ```
 
 **WeChat medical research workflow / 医学公众号工作流：**
@@ -88,13 +89,17 @@ co-completer -> independent review -> revision recommendations
 
 **中文：** 当用户要求虚拟或假设阳性结果时，除非用户已经固定结果轴，否则先做一轮简洁的文献、公共数据可行性和创新性扫描；选择既高度可能成立、又最有创新性，且在已扫描文献中未见直接同构研究的结果轴；在 `virtual_result_rationale.md` 或 `assumed_result_explanation.md` 中记录最接近既往工作、创新性差异和剩余不确定性。虚拟结果状态只记录在 Markdown 报告和来源账本中，不在每段正文、每个表格或每条图注里反复标注。
 
-**English:** For mechanism papers, preserve two evidence jobs even when the new topic does not mechanically copy the source routine: (1) node-discovery experiments that find downstream molecules, mechanism nodes, or phenotype-linked mediators, and (2) validation experiments that prove the selected node. Validation plans should explicitly consider decisive assays such as conditional knockout, tissue/cell-specific knockout, mass-spectrometry confirmation, SPR/BLI/ITC molecular interaction assays, Co-IP/CETSA/DARTS, rescue, and phenotype readouts.
+**English:** For mechanism papers, every complete module should preserve two evidence jobs: (1) discovery experiments or analyses that find downstream molecules, mechanism nodes, phenotype-linked mediators, or analysis targets, often through omics, public data, screens, or high-throughput experiments; and (2) validation experiments that perturb the upstream/input side and observe the downstream/output side. If testing a mediator, include rescue or explicitly mark rescue as missing. Validation plans should consider decisive assays such as conditional knockout, tissue/cell-specific knockout, mass-spectrometry confirmation, SPR/BLI/ITC molecular interaction assays, Co-IP/CETSA/DARTS, rescue, and phenotype readouts.
 
-**中文：** 对机制论文，即使新课题不生硬模仿来源套路，也必须保留两类证据功能：1）节点发现实验，用来发现下游分子、机制节点或表型关联介质；2）节点验证实验，用来证明被选中的节点。验证计划应明确考虑关键实验，例如条件性敲除、组织/细胞特异性敲除、质谱确认、SPR/BLI/ITC 分子互作检测、Co-IP/CETSA/DARTS、rescue 和表型读出。
+**中文：** 对机制论文，每个完整模块都要保留两类证据功能：1）发现实验或分析，用组学、公共数据、筛选或高通量实验发现下游分子、机制节点、表型关联介质或分析目标；2）验证实验，干预上游/输入端并观察下游/输出端。如果验证中介，需要包含 rescue，或明确标记 rescue 缺失。验证计划应考虑关键实验，例如条件性敲除、组织/细胞特异性敲除、质谱确认、SPR/BLI/ITC 分子互作检测、Co-IP/CETSA/DARTS、rescue 和表型读出。
 
-**English:** After `manuscript/full_manuscript.md` is assembled, `$co-paper` should call `$co-completer` by default. `$co-completer` performs completion review and writing, judges rigor, novelty, newsworthiness, journal fit, evidence sufficiency, decisive missing experiments, and whether virtual or assumed results still block real submission. It then asks the user to choose: mark the project complete, dynamically branch/resume from an earlier checkpoint or other literature class, or deepen analysis/research and run one focused `$co-search` plus `$co-distill` supplement cycle before closure.
+**English:** `$co-paper` does not use `$co-distill` or `$co-topic` in the active mainline. Literature can inspire one module at a time, but it should not produce a complete study design or reuse source-paper molecules as if they were new targets.
 
-**中文：** `manuscript/full_manuscript.md` 组装后，`$co-paper` 默认调用 `$co-completer`。`$co-completer` 负责完成审稿和写作，判断严谨性、创新性、新闻性、期刊匹配度、证据充分性、关键缺失实验，以及虚拟/假设结果是否仍然阻断真实投稿。随后让用户选择：标记项目完成；动态回跳/分支到早期节点或其他文献类别；或进一步深入分析研究，并针对补充内容运行一次聚焦 `$co-search` + `$co-distill` 后收尾。
+**中文：** `$co-paper` 主线不再使用 `$co-distill` 或 `$co-topic`。文献只能启发一个模块，不能直接产出完整研究设计，也不能把来源论文中已有分子当成新靶点复用。
+
+**English:** After `manuscript/full_manuscript.md` is assembled, `$co-paper` should call `$co-completer` by default. `$co-completer` performs completion review and writing, judges rigor, novelty, newsworthiness, journal fit, evidence sufficiency, decisive missing experiments, and whether virtual or assumed results still block real submission. It then asks the user to choose: mark the project complete, dynamically branch/resume from an earlier checkpoint, or start a new downstream module loop through `$co-search -> $co-plan -> $co-result`.
+
+**中文：** `manuscript/full_manuscript.md` 组装后，`$co-paper` 默认调用 `$co-completer`。`$co-completer` 负责完成审稿和写作，判断严谨性、创新性、新闻性、期刊匹配度、证据充分性、关键缺失实验，以及虚拟/假设结果是否仍然阻断真实投稿。随后让用户选择：标记项目完成；动态回跳/分支到早期节点；或启动新的下游模块循环 `$co-search -> $co-plan -> $co-result`。
 
 **English:** For existing manuscripts, `$co-completer` must stop after revision recommendations and ask which changes to apply. It must also ask before generating virtual or simulated positive results. New or substantially revised manuscript-facing text is marked as red and bold in Markdown and Word.
 
@@ -159,9 +164,7 @@ For choosing the right `co-paper` entry point:
 选择 `co-paper` 子技能入口时，可按任务类型触发：
 
 - 想做完整论文工作流：说 `Use $co-paper`，最好。
-- 只想检索分类文献：说 `Use $co-search`。
-- 已选一类文献，想拆套路：说 `Use $co-distill`。
-- 想生成和排序课题：说 `Use $co-topic`。
+- 想按五类创新点检索文献：说 `Use $co-search`。
 - 想做公共数据或实验计划：说 `Use $co-plan`。
 - 有结果或明确要虚拟结果：说 `Use $co-result`。
 - 写 Methods：说 `Use $co-method`。
@@ -176,9 +179,9 @@ For the full interactive paper workflow:
 Use $co-paper
 
 Topic seed: macrophage metabolism and osteoarthritis
-Goal: 先调用 co-search 检索近两年文献并分类；我选择一类后，再调用 co-distill 蒸馏文章套路，调用 co-topic 生成可复刻套路的新课题，调用 co-plan 给出公共数据集、生信分析计划和实验计划。每一轮都保存报告、表格和必要图片/图片提示。最后根据真实或我明确要求的虚拟结果调用 co-result、co-method、co-discussion，并拼成全文。
+Goal: 按模块递进，不要整体设计论文。先调用 co-search 检索文献，但只分类文献中的五类创新点：新表型、新机制、新分子类型、新实验方法、新生信分析。让我选择其中一个模块后，调用 co-plan 设计模块关系、节点发现层和验证层；发现层用于筛出新东西，验证层用于干预上游并观察下游，如果验证中介要包含 rescue 或标记缺失。根据真实结果、部分结果、假设结果或我明确允许的虚拟结果调用 co-result 写出该模块 Results，Results 中也要同时包含发现层和验证层。模块结束后让我决定下一下游/上游/并列模块，重复 co-search -> co-plan -> co-result。等我说结束整个项目后，再整合所有模块结果，调用 co-method、co-discussion，组装 full_manuscript.md，最后调用 co-completer。
 Output defaults: 每一步 Markdown 默认中文；full_manuscript.md 只给一个中文全文；虚拟结果前先调研文献、公共数据可行性和创新性，选择既可能成立又最创新、未见直接同构研究的阳性结果轴并保存解释文件；图片生成可用时生成 Figure PNG。
-Completion: 全文完成后调用 co-completer，生成 completion_review.md、completion_revision_plan.md 和 completion_decision_menu.md；然后让我选择标记项目完成、动态回跳/分支继续其他类别或节点并形成新项目/子文件夹，或进一步深入分析研究并针对补充内容补跑一轮 co-search + co-distill 后收尾。
+Completion: 全文完成后调用 co-completer，生成 completion_review.md、completion_revision_plan.md 和 completion_decision_menu.md；然后让我选择标记项目完成、动态回跳/分支，或启动新的下游模块循环 co-search -> co-plan -> co-result。
 ```
 
 For the medical research public-account workflow:
@@ -305,8 +308,6 @@ co-completer/
 └── scripts/
 
 co-search/
-co-distill/
-co-topic/
 co-plan/
 co-result/
 co-discussion/
@@ -328,8 +329,6 @@ wechat-med-routine/
 - `co-method/references/output_templates.md`: Concise Chinese draft skeletons, indexes, ledgers, and reusable prompt.
 - `co-paper/SKILL.md`: Upper-level orchestration for multi-round literature-to-paper workflows.
 - `co-search/SKILL.md`: Literature retrieval, screening, classification, and representative paper selection.
-- `co-distill/SKILL.md`: Paper-routine distillation from a selected literature class.
-- `co-topic/SKILL.md`: Topic and hypothesis generation from a distilled routine.
 - `co-plan/SKILL.md`: Public dataset, bioinformatics, experiment, and virtual-result prompt planning.
 - `co-result/SKILL.md`: Results writing from input results or explicitly requested simulated results.
 - `co-discussion/SKILL.md`: Literature-backed Introduction and Discussion writing with numbered citations.
@@ -351,8 +350,6 @@ wechat-med-routine/
 - `co-method/references/output_templates.md`：中文精简草稿骨架、索引表、证据表和可复用 prompt。
 - `co-paper/SKILL.md`：多轮“文献到论文”工作流总控。
 - `co-search/SKILL.md`：文献检索、筛选、分类和代表论文选择。
-- `co-distill/SKILL.md`：从选定文献类别中蒸馏文章套路。
-- `co-topic/SKILL.md`：基于蒸馏套路生成课题和假说。
 - `co-plan/SKILL.md`：规划公共数据集、生信分析、实验验证和虚拟结果 prompt。
 - `co-result/SKILL.md`：基于输入结果或明确要求的模拟结果撰写 Results。
 - `co-discussion/SKILL.md`：先调研文献，再用编号引用撰写 Introduction 和 Discussion。
@@ -412,8 +409,6 @@ cp -R biomedical-co-scientist ~/.codex/skills/biomedical-co-scientist
 cp -R co-method ~/.codex/skills/co-method
 cp -R co-paper ~/.codex/skills/co-paper
 cp -R co-search ~/.codex/skills/co-search
-cp -R co-distill ~/.codex/skills/co-distill
-cp -R co-topic ~/.codex/skills/co-topic
 cp -R co-plan ~/.codex/skills/co-plan
 cp -R co-result ~/.codex/skills/co-result
 cp -R co-discussion ~/.codex/skills/co-discussion
@@ -429,8 +424,6 @@ cp -R biomedical-co-scientist ~/.codex/skills/biomedical-co-scientist
 cp -R co-method ~/.codex/skills/co-method
 cp -R co-paper ~/.codex/skills/co-paper
 cp -R co-search ~/.codex/skills/co-search
-cp -R co-distill ~/.codex/skills/co-distill
-cp -R co-topic ~/.codex/skills/co-topic
 cp -R co-plan ~/.codex/skills/co-plan
 cp -R co-result ~/.codex/skills/co-result
 cp -R co-discussion ~/.codex/skills/co-discussion
@@ -456,12 +449,6 @@ python ~/.codex/skills/.system/skill-creator/scripts/quick_validate.py co-paper
 UV_CACHE_DIR=/tmp/uv-skill-validate-cache \
 uv run --with pyyaml \
 python ~/.codex/skills/.system/skill-creator/scripts/quick_validate.py co-search
-UV_CACHE_DIR=/tmp/uv-skill-validate-cache \
-uv run --with pyyaml \
-python ~/.codex/skills/.system/skill-creator/scripts/quick_validate.py co-distill
-UV_CACHE_DIR=/tmp/uv-skill-validate-cache \
-uv run --with pyyaml \
-python ~/.codex/skills/.system/skill-creator/scripts/quick_validate.py co-topic
 UV_CACHE_DIR=/tmp/uv-skill-validate-cache \
 uv run --with pyyaml \
 python ~/.codex/skills/.system/skill-creator/scripts/quick_validate.py co-plan
@@ -497,12 +484,6 @@ python ~/.codex/skills/.system/skill-creator/scripts/quick_validate.py co-paper
 UV_CACHE_DIR=/tmp/uv-skill-validate-cache \
 uv run --with pyyaml \
 python ~/.codex/skills/.system/skill-creator/scripts/quick_validate.py co-search
-UV_CACHE_DIR=/tmp/uv-skill-validate-cache \
-uv run --with pyyaml \
-python ~/.codex/skills/.system/skill-creator/scripts/quick_validate.py co-distill
-UV_CACHE_DIR=/tmp/uv-skill-validate-cache \
-uv run --with pyyaml \
-python ~/.codex/skills/.system/skill-creator/scripts/quick_validate.py co-topic
 UV_CACHE_DIR=/tmp/uv-skill-validate-cache \
 uv run --with pyyaml \
 python ~/.codex/skills/.system/skill-creator/scripts/quick_validate.py co-plan

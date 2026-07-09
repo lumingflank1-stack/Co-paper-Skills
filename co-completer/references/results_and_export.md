@@ -67,7 +67,7 @@ Use these defaults:
 - `raw_data_requirements_summary.md`
 - `completion_decision_menu.md`
 - `project_completion_record.md`
-- `deepening_co_search_distill_plan.md`
+- `new_module_loop_plan.md`
 
 ## DOCX Export
 

@@ -7,7 +7,8 @@
 
 - Distilled routine used:
 - New biological context:
-- Core mechanism:
+- Core mechanism: use phenotype-level mechanism with `???` for unresolved core molecule or mechanism mediator.
+- Unknown core slot: `???`; include expected molecule family/module, known molecules to avoid, and how `???` will be discovered.
 - Why this is not just copying the source papers:
 - Primary evidence:
 - Evidence tier:
@@ -30,7 +31,7 @@
 
 ## Topic Prioritization Columns
 
-`rank,topic_id,topic_name,novelty,evidence,public_data_feasibility,analysis_feasibility,experiment_feasibility,causal_testability,manuscript_potential,total,decision,main_risk`
+`rank,topic_id,topic_name,unknown_core_slot,novelty,evidence,public_data_feasibility,analysis_feasibility,experiment_feasibility,unknown_node_discoverability,prior_collision_risk,causal_testability,manuscript_potential,total,decision,main_risk`
 
 Score each numeric criterion from 1 to 5.
 
@@ -40,7 +41,7 @@ Score each numeric criterion from 1 to 5.
 
 ## Node Discovery Plan
 
-For each topic, specify how the downstream mechanism molecule, node, or phenotype-linked mediator will be found. Do not only list validation assays.
+For each topic, specify how the downstream mechanism molecule, node, or phenotype-linked mediator will be found. If the topic card contains `???`, the plan must explain how `???` will be discovered and how known source-paper molecules will be excluded. Do not only list validation assays.
 
 ```markdown
 ### Node Discovery for <topic_id>
@@ -49,8 +50,10 @@ For each topic, specify how the downstream mechanism molecule, node, or phenotyp
 - Discovery assay: transcriptomics / proteomics / phosphoproteomics / secretomics / metabolomics / IP-MS / pull-down-MS / CRISPR screen / perturb-seq / spatial screen / ligand-receptor screen / target-fishing / other
 - Samples or model:
 - Candidate selection rule:
-- Expected node type:
+- Known molecules or close prior targets to exclude:
+- Expected node type or family-level hint:
 - Orthogonal shortlist check:
+- Novelty filter before naming `???`:
 - How this differs from direct validation:
 ```
 
@@ -79,4 +82,5 @@ End with:
 - Recommended main topic.
 - Backup topic.
 - Why the main topic is the best first test.
+- Which `???` slot must be resolved first by co-plan.
 - What the user must choose next.

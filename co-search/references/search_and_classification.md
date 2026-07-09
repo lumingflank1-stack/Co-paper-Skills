@@ -1,4 +1,4 @@
-# Search and Classification Schema
+# Search and Innovation-Point Classification Schema
 
 ## Search Strategy Report
 
@@ -15,25 +15,59 @@
 
 ## Literature Matrix Columns
 
-`paper_id,title,authors,year,journal,doi,pmid,study_type,disease_or_context,species,tissue_or_cell_type,main_axis,data_types,public_dataset_accessions,node_discovery_experiments,validation_experiments,key_methods,key_results,validation_level,limitations,topic_class,representative_rank,notes`
+`paper_id,title,authors,year,journal,doi,pmid,study_type,disease_or_context,species,tissue_or_cell_type,main_axis,data_types,public_dataset_accessions,key_results,validation_level,limitations,notes`
 
-## Topic Class Report
+## Innovation Point Matrix Columns
 
-For each class:
+`innovation_id,paper_id,innovation_family,innovation_point,biological_context,why_new_or_useful,evidence_type,key_method_or_dataset,validation_level,can_be_selected_as_module,likely_next_step,limitations,notes`
+
+Innovation families:
+
+- `new_phenotype`
+- `new_mechanism`
+- `new_molecule_type`
+- `new_experimental_method`
+- `new_bioinformatics_analysis`
+
+## Module Options Report
+
+Save `module_options.md` with the five sections below. Each section should list selectable modules rather than whole paper classes.
 
 ```markdown
-### Class N. Short Name
+# Module Options
 
-- Core question:
-- Common mechanism or pathway:
-- Typical datasets:
-- Typical bioinformatics move:
-- Typical node-discovery experiment:
-- Typical validation ladder:
-- Representative papers:
-- Strength:
-- Weakness:
-- Why this class is useful for co-distill:
+## 1. New Phenotypes
+
+| Option | Innovation point | Representative papers | Why useful | First co-plan move |
+|---|---|---|---|---|
+
+## 2. New Mechanisms
+
+| Option | Innovation point | Representative papers | Why useful | First co-plan move |
+|---|---|---|---|---|
+
+## 3. New Molecule Types
+
+| Option | Innovation point | Representative papers | Why useful | First co-plan move |
+|---|---|---|---|---|
+
+## 4. New Experimental Methods
+
+| Option | Innovation point | Representative papers | Why useful | First co-plan move |
+|---|---|---|---|---|
+
+## 5. New Bioinformatics Analyses
+
+| Option | Innovation point | Representative papers | Why useful | First co-plan move |
+|---|---|---|---|---|
+
+## Recommended Choice
+
+- Best first module:
+- Rationale:
+- What it can answer:
+- What it cannot answer:
+- Suggested prompt for `$co-plan`:
 ```
 
 ## Evidence Tier Labels
@@ -47,6 +81,11 @@ For each class:
 
 When classifying validation ladders, explicitly capture decisive assays such as conditional knockout, tissue/cell-specific knockout, mass-spectrometry detection or confirmation, SPR/BLI/ITC molecular interaction assays, Co-IP, CETSA/DARTS, rescue, and phenotype readouts.
 
-分类验证阶梯时，要明确记录关键验证实验，例如条件性敲除、组织/细胞特异性敲除、质谱检测或确认、SPR/BLI/ITC 分子互作检测、Co-IP、CETSA/DARTS、rescue 和表型读出。
-
 Use the weakest applicable tier when a paper mixes strong and weak claims.
+
+## What Not To Do
+
+- Do not output `topic_classes.md` as the main `$co-paper` decision file.
+- Do not ask the user to choose a whole literature class.
+- Do not infer a complete study design from one paper or one literature cluster.
+- Do not send the user to `$co-distill` or `$co-topic` in the main `$co-paper` workflow.

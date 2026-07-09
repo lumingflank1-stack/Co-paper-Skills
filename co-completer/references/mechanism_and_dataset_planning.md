@@ -13,17 +13,18 @@ Context or disease state -> upstream driver -> core molecule/cell pathway
 
 For each weak link, propose one analysis and one experiment that can strengthen it.
 
-## Deepen-Then-Close Route
+## New Module Loop Route
 
 Use this route when the user chooses to go beyond normal completion after `$co-completer` review/writing.
 
 The route is intentionally bounded:
 
-1. Define one deeper research question or missing routine.
-2. Call `$co-search` once to search and classify the most relevant supplement literature.
-3. Call `$co-distill` once to extract the supplement routine, node-discovery logic, validation ladder, or figure logic.
-4. Save `deepening_co_search_distill_plan.md` plus the supplement search/distill outputs.
-5. Return to the completion menu and ask whether to close, branch, or revise.
+1. Define one downstream module question.
+2. Call `$co-search` once to classify innovation points into new phenotype, new mechanism, new molecule type, new experimental method, and new bioinformatics analysis.
+3. Ask the user to choose one module.
+4. Call `$co-plan` for that module.
+5. Close the module with `$co-result`.
+6. Return to the completion menu and ask whether to close, branch, or start another module.
 
 Do not run an unbounded research loop in the completion stage unless the user explicitly asks.
 

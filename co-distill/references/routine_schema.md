@@ -9,7 +9,7 @@
 
 ## One-Sentence Routine
 
-In [disease/context], identify [candidate node/state] through [public-data or omics move], discover [downstream molecule/mechanism/phenotype node] through [node-discovery experiment], validate the node through [validation ladder], and test mechanism through [experiment ladder], leading to [manuscript claim].
+In [disease/context], identify [frontier phenotype/state] through [public-data or omics move], define the unresolved core molecule as `???`, discover `???` through [node-discovery experiment], validate `???` through [validation ladder], and test mechanism through [experiment ladder], leading to [manuscript claim]. Source-paper molecules are recorded as known examples or exclusion items, not as the new topic's proposed core target.
 
 ## Reusable Routine
 
@@ -40,13 +40,23 @@ In [disease/context], identify [candidate node/state] through [public-data or om
 
 `item_id,source_paper,data_or_assay_type,accession_or_reagent,organism,tissue_or_cell_type,comparison,role_in_routine,node_discovery_or_validation,reusable_requirement,notes`
 
-## Node Discovery Experiment Map
+## Unknown Node Handoff
 
-Track how each source paper discovers the downstream molecule, mechanism node, or phenotype-linked mediator:
+Use this handoff whenever the source papers contain already-studied molecules that should not be reused as new targets. The goal is to transfer phenotype and discovery strategy, while leaving the core target or mechanism molecule unresolved as `???` for co-plan.
 
 ```markdown
-| Paper | Upstream perturbation or condition | Discovery assay | Data type | Node found | Why this node matters | Follow-up validation |
+| Slot ID | Placeholder | Phenotype or mechanism gap | Known molecules to exclude | Allowed family-level hints | Discovery route | Minimum novelty filter |
 |---|---|---|---|---|---|---|
+| U1 | ??? |  |  |  | public-data screen / perturbation omics / proteomics / metabolomics / spatial screen / CRISPR screen / target fishing | no direct same molecule-same disease-same phenotype prior study |
+```
+
+## Node Discovery Experiment Map
+
+Track how each source paper discovers the downstream molecule, mechanism node, or phenotype-linked mediator. For new-topic design, the source paper's exact node should usually become an exclusion item and the new node should be represented as `???` until discovered by co-plan:
+
+```markdown
+| Paper | Upstream perturbation or condition | Discovery assay | Data type | Source node found | Reusable discovery logic | Exclude from new topic? | Follow-up validation |
+|---|---|---|---|---|---|---|---|
 ```
 
 Typical node-discovery experiments include:
@@ -65,8 +75,9 @@ Validation experiments are separate and should be extracted explicitly. Importan
 
 Track three layers:
 
-- `known`: already established in source papers.
-- `transferable_gap`: same routine could answer a different disease, cell type, node, or intervention.
+- `known`: already established in source papers; these molecules should usually be excluded from new-topic core claims.
+- `unknown_slot`: the `???` molecule, node, mediator, target class, or mechanism slot that co-plan should discover.
+- `transferable_gap`: same routine could answer a different disease, cell type, phenotype, node family, or intervention without reusing the exact source molecule.
 - `danger_zone`: too close to source papers or unsupported by available data.
 
 ## Replication Template
@@ -76,12 +87,13 @@ The template should be abstract enough to reuse:
 ```markdown
 1. Select disease/context with unmet mechanism.
 2. Retrieve public dataset type A.
-3. Identify candidate node by contrast B.
-4. Run or reuse node-discovery experiment C to find downstream molecule/mechanism/phenotype mediator.
-5. Validate across dataset type D.
-6. Test cell-type specificity.
-7. Link to pathway or mediator.
-8. Validate the node by perturbation or direct interaction.
-9. Add rescue or downstream phenotype readout.
-10. Write Results in figure order.
+3. Identify frontier phenotype, cell state, spatial niche, or response pattern by contrast B.
+4. Define the unresolved core molecule or mechanism mediator as `???`; list exact source-paper molecules as known exclusions.
+5. Run or reuse node-discovery experiment C to discover `???`.
+6. Validate across dataset type D and run a novelty filter against close prior work.
+7. Test cell-type specificity.
+8. Link `???` to pathway, mediator, or phenotype.
+9. Validate `???` by perturbation, rescue, direct interaction, or orthogonal assay as appropriate.
+10. Add rescue or downstream phenotype readout.
+11. Write Results in figure order.
 ```

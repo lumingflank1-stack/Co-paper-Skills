@@ -1,4 +1,4 @@
 interface:
   display_name: "Co-Plan"
-  short_description: "Plan public-data analyses and experiments"
-  default_prompt: "Use $co-plan to design public-dataset bioinformatics analyses and wet-lab validation plans for a candidate topic or result."
+  short_description: "Plan a module with discovery and validation"
+  default_prompt: "Use $co-plan to design module relationship, public-data analyses, node-discovery layer, validation layer, rescue if needed, virtual-result prompts, and next-module decisions for one selected innovation module."

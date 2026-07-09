@@ -1,6 +1,6 @@
 # Co-Completer Finalization and Dynamic Resume
 
-Use this reference after `manuscript/full_manuscript.md` is assembled, or when the user wants to continue from a middle checkpoint after `$co-completer`.
+Use this reference after `manuscript/full_manuscript.md` is assembled, or when the user wants to continue from a module checkpoint after `$co-completer`.
 
 ## Finalization Through `$co-completer`
 
@@ -20,8 +20,8 @@ If any major claim still uses `virtual_positive_results` or `assumed_results`, `
 After `$co-completer` review/writing, stop and ask the user to choose one route unless they asked to continue automatically:
 
 1. **Mark project complete (`complete_project`)**: save `manuscript/project_completion_record.md`, listing final manuscript, figures, ledgers, source modes, review/writing files, and completion date.
-2. **Dynamic branch/resume (`dynamic_branch`)**: return to literature class selection, topic generation, plan, selected Figure/result/experiment node, or manuscript revision; create a new project or subfolder under `branches/YYYYMMDD_<target>/` or a user-named folder.
-3. **Deepen then close (`deepen_then_close`)**: after `$co-completer` review/writing, define one deeper research or supplement question, run one focused `$co-search` and one `$co-distill` cycle, save supplement reports, then return to the completion decision or mark complete.
+2. **Dynamic branch/resume (`dynamic_branch`)**: return to a prior module, a selected Figure/result/experiment node, or manuscript revision; create a new project or subfolder under `branches/YYYYMMDD_<target>/` or a user-named folder.
+3. **New module loop (`new_module_loop`)**: choose the next downstream module and restart `$co-search -> $co-plan -> $co-result`.
 
 ## Resume State
 
@@ -33,19 +33,21 @@ Write `completion_decision_menu.md` with:
 - Current manuscript:
 - Completion review:
 - Completion revision/writing:
+- Completed modules:
 - Recommended route:
 - Route A complete_project:
 - Route B dynamic_branch:
-- Route C deepen_then_close:
+- Route C new_module_loop:
 - User-selected route:
 - Output folder if branching:
+- Next module seed if continuing:
 - Stop/go criteria for closure:
 ```
 
 ## Branching Rules
 
 - Never overwrite prior manuscript outputs unless the user explicitly asks.
-- Keep `source_mode_ledger.csv` and `evidence_ledger.csv` linked or copied into the branch.
+- Keep `module_ledger.csv`, `source_mode_ledger.csv`, and `evidence_ledger.csv` linked or copied into the branch.
 - When resuming from a Figure/result, preserve the original Figure ID in the branch state, then assign new IDs only when the manuscript structure changes.
-- If the user chooses a different literature class, treat it as a new branch, not a silent replacement of the prior class.
-- If the user chooses `deepen_then_close`, keep the cycle bounded to one `$co-search` plus one `$co-distill` unless the user explicitly asks for another round.
+- If the user chooses a new downstream module, treat it as `new_module_loop`, not as a silent replacement of the previous module.
+- Do not run `$co-distill` or `$co-topic` in the active `$co-paper` branch unless the user explicitly requests those legacy tools.
