@@ -44,6 +44,8 @@ MODULE_COLUMNS = [
     "parallel_group",
     "innovation_family",
     "selected_innovation_point",
+    "selected_hypothesis_id",
+    "selected_hypothesis",
     "biological_question",
     "active_claim",
     "discovery_status",
@@ -58,16 +60,35 @@ MODULE_COLUMNS = [
     "status",
 ]
 
+HYPOTHESIS_COLUMNS = [
+    "module_id",
+    "selected_innovation_point",
+    "hypothesis_id",
+    "rank",
+    "hypothesis_name",
+    "novelty",
+    "evidence_strength",
+    "feasibility",
+    "causal_testability",
+    "translational_value",
+    "collision_risk",
+    "risk_penalty",
+    "total",
+    "user_decision",
+    "status",
+    "co_plan_handoff",
+]
+
 
 def write_text(path: Path, content: str) -> None:
     if not path.exists():
-        path.write_text(content)
+        path.write_text(content, encoding="utf-8")
 
 
 def write_csv(path: Path, columns: list[str]) -> None:
     if path.exists():
         return
-    with path.open("w", newline="") as handle:
+    with path.open("w", newline="", encoding="utf-8") as handle:
         writer = csv.writer(handle)
         writer.writerow(columns)
 
@@ -87,7 +108,7 @@ def main() -> None:
 
     for index in range(1, args.rounds + 1):
         round_dir = out / f"module_{index:02d}"
-        for folder in ["plan", "scripts", "figures", "tables"]:
+        for folder in ["debate", "plan", "scripts", "figures", "tables"]:
             (round_dir / folder).mkdir(parents=True, exist_ok=True)
         write_text(
             round_dir / "interpretation_and_next_module.md",
@@ -100,6 +121,7 @@ def main() -> None:
     )
     write_text(out / "decision_log.md", "# Decision Log\n")
     write_csv(out / "module_ledger.csv", MODULE_COLUMNS)
+    write_csv(out / "hypothesis_ledger.csv", HYPOTHESIS_COLUMNS)
     write_csv(out / "evidence_ledger.csv", EVIDENCE_COLUMNS)
     write_csv(out / "source_mode_ledger.csv", SOURCE_MODE_COLUMNS)
     write_text(out / "manuscript" / "virtual_result_rationale.md", "# 虚拟或假设结果解释\n\n如本项目使用虚拟或假设阳性结果，在此记录文献调研、公共数据可行性、创新性扫描、最接近既往工作、所选既可能成立又最有创新性的阳性结果轴、为什么不是直接重复，以及剩余不确定性。\n")

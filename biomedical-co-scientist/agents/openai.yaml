@@ -1,4 +1,0 @@
-interface:
-  display_name: "Biomedical Co-Scientist"
-  short_description: "Hypothesis loops for biomedical research"
-  default_prompt: "Use $biomedical-co-scientist to generate, critique, test, and revise biomedical hypotheses from my project notes and data."

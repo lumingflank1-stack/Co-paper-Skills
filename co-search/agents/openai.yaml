@@ -1,4 +1,4 @@
 interface:
   display_name: "Co-Search"
   short_description: "Search literature innovation modules"
-  default_prompt: "Use $co-search to retrieve biomedical literature and classify innovation points into new phenotype, mechanism, molecule type, experimental method, and bioinformatics analysis modules."
+  default_prompt: "Use $co-search to retrieve biomedical literature, classify five innovation module families, and stop for my module selection before handing off to $co-debate."

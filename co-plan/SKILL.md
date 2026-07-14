@@ -1,15 +1,15 @@
 ---
 name: co-plan
-description: Design executable plans for one selected biomedical research module at a time. Use after co-search when the user has chosen one innovation module, such as a new phenotype, new mechanism, new molecule type, new experimental method, or new bioinformatics analysis. Plan the module relationship, public-data analyses, node-discovery layer, validation layer, mediator rescue if needed, virtual result prompts, and next-module decision rules for the selected module only. 用于用户选择一个创新模块后，设计该模块关系、生信分析、公共数据、节点发现层、验证层、中介 rescue、虚拟结果 prompt 和下一模块决策规则。
+description: Design an executable plan for one user-selected biomedical hypothesis within one selected innovation module. Use after co-search module selection and co-debate Top 5 ranking, only when the user has chosen one hypothesis. Plan module relationship, public-data analysis, node discovery, validation, mediator rescue, virtual-result prompts, and next-module rules. 用于用户先选择创新模块、再从 co-debate Top 5 中选择一个假说后，为该单一假说设计模块关系、生信、发现层、验证层和 rescue 计划。
 ---
 
 # Co-Plan / 模块分析与实验计划
 
 ## Operating Goal / 运行目标
 
-**English:** Convert one selected innovation module into the next executable research step. Do not design the whole paper at once. The plan should close the current module and define what downstream module can be considered after results are interpreted.
+**English:** Convert one user-selected hypothesis within one selected innovation module into the next executable research step. Do not plan directly from an unranked module and do not design the whole paper at once.
 
-**中文：** 将用户选中的一个创新模块转化为下一步可执行研究动作。不要一次性设计整篇论文。计划的目标是完成当前模块，并在结果解释后给出可考虑的下游模块。
+**中文：** 将用户从 `$co-debate` Top 5 中选中的一个假说转化为下一步可执行研究动作。不要从未辩论的模块直接规划，也不要一次性设计整篇论文。
 
 Default to Chinese reports unless the user requests another language. Generated Markdown reports should be Chinese-only by default; do not create bilingual project reports unless explicitly requested.
 
@@ -18,6 +18,8 @@ Default to Chinese reports unless the user requests another language. Generated 
 Use one or more:
 
 - Selected innovation module from `$co-search`.
+- Selected hypothesis and rank from `$co-debate`.
+- `co_plan_handoff.md`, including predictions, alternative explanation, falsification criteria, and evidence gaps.
 - `innovation_points.md`, `innovation_point_matrix.csv`, or `module_options.md`.
 - Analysis results, figures, tables, or experiment notes from a previous module.
 - User constraints: species, data type, local compute, assays, timeline, target journal.
@@ -26,8 +28,8 @@ Do not require topic cards from `$co-topic` or distilled routines from `$co-dist
 
 ## Workflow / 工作流
 
-1. Identify the selected module family and selected innovation point.
-2. Define one active claim for this module.
+1. Confirm the selected module family, innovation point, hypothesis ID, rank, and user selection. If no hypothesis was selected, return to `$co-debate`.
+2. Convert the selected hypothesis into one conservative active claim.
 3. Classify the module relationship as `standalone`, `parallel`, `progressive_downstream`, or `progressive_upstream`; record the parent module or parallel group when known.
 4. Plan both required evidence layers unless the user explicitly marks the module exploratory-only:
    - Node-discovery layer: how to find the new molecule, mechanism node, phenotype-linked mediator, method readout, or analysis target.
@@ -59,6 +61,7 @@ Use `scripts/create_plan_templates.py` when a blank module folder is useful.
 Save in `02_modules/`, `module_##/plan/`, or the chosen directory:
 
 - `module_plan.md`
+- `selected_hypothesis.md`
 - `analysis_plan.md`
 - `dataset_manifest.csv`
 - `experiment_plan.md`

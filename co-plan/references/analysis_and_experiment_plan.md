@@ -13,6 +13,10 @@
 - Parallel group:
 - Innovation family: new_phenotype / new_mechanism / new_molecule_type / new_experimental_method / new_bioinformatics_analysis
 - Selected innovation point:
+- Selected hypothesis ID and rank:
+- Selected hypothesis:
+- Main alternative explanation:
+- Falsification criteria inherited from co-debate:
 - Upstream context:
 - Downstream question this module could enable:
 

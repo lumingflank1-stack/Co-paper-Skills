@@ -1,4 +1,4 @@
 interface:
   display_name: "Co-Paper"
   short_description: "Build biomedical papers one module at a time"
-  default_prompt: "Use $co-paper to run a modular biomedical paper workflow: classify literature innovation points, choose one module, plan discovery and validation layers, write module Results, then decide the next upstream, downstream, parallel module, or final manuscript."
+  default_prompt: "Use $co-paper to search innovation modules, let me choose one, use $co-debate to rank five hypotheses, let me choose one hypothesis, then run $co-plan and $co-result before deciding the next module or final manuscript."

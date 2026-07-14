@@ -1,4 +1,4 @@
 interface:
   display_name: "Co-Plan"
   short_description: "Plan a module with discovery and validation"
-  default_prompt: "Use $co-plan to design module relationship, public-data analyses, node-discovery layer, validation layer, rescue if needed, virtual-result prompts, and next-module decisions for one selected innovation module."
+  default_prompt: "Use $co-plan only after I select one $co-debate hypothesis; design its module relationship, discovery layer, validation layer, rescue, data plan, and decision rules."

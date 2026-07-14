@@ -20,9 +20,9 @@ Use this route when the user chooses to go beyond normal completion after `$co-c
 The route is intentionally bounded:
 
 1. Define one downstream module question.
-2. Call `$co-search` once to classify innovation points into new phenotype, new mechanism, new molecule type, new experimental method, and new bioinformatics analysis.
-3. Ask the user to choose one module.
-4. Call `$co-plan` for that module.
+2. Call `$co-search` once to classify innovation points into five families and ask the user to select one module.
+3. Call `$co-debate` on the selected module, rank five competing hypotheses, and ask the user to select one.
+4. Call `$co-plan` only for the selected hypothesis.
 5. Close the module with `$co-result`.
 6. Return to the completion menu and ask whether to close, branch, or start another module.
 

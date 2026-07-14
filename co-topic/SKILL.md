@@ -7,7 +7,7 @@ description: Generate and rank biomedical research topics from a distilled paper
 
 ## Operating Goal / 运行目标
 
-**English:** Generate testable biomedical topic skeletons from a distilled article routine. Adapt the co-scientist loop to topic generation: generate, critique, rank, test, revise, and translate. When the core target or mechanism molecule has not been discovered in this project, represent it as `???` rather than naming a molecule already studied by the source papers.
+**English:** Generate testable biomedical topic skeletons from a distilled article routine. Use a generate, critique, rank, test, revise, and translate loop. When the core target or mechanism molecule has not been discovered in this project, represent it as `???` rather than naming a molecule already studied by the source papers.
 
 **中文：** 从蒸馏出的文章套路中生成可检验的生物医学课题骨架。把共同科学家循环应用到选题：生成、反驳、排序、验证设计、修正和转化表达。当本项目尚未发现核心靶点或机制分子时，用 `???` 占位，而不是直接命名来源论文已经研究过的分子。
 

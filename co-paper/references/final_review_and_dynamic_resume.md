@@ -21,7 +21,7 @@ After `$co-completer` review/writing, stop and ask the user to choose one route 
 
 1. **Mark project complete (`complete_project`)**: save `manuscript/project_completion_record.md`, listing final manuscript, figures, ledgers, source modes, review/writing files, and completion date.
 2. **Dynamic branch/resume (`dynamic_branch`)**: return to a prior module, a selected Figure/result/experiment node, or manuscript revision; create a new project or subfolder under `branches/YYYYMMDD_<target>/` or a user-named folder.
-3. **New module loop (`new_module_loop`)**: choose the next downstream module and restart `$co-search -> $co-plan -> $co-result`.
+3. **New module loop (`new_module_loop`)**: restart `$co-search -> user module choice -> $co-debate -> user hypothesis choice -> $co-plan -> $co-result`.
 
 ## Resume State
 
@@ -49,5 +49,5 @@ Write `completion_decision_menu.md` with:
 - Never overwrite prior manuscript outputs unless the user explicitly asks.
 - Keep `module_ledger.csv`, `source_mode_ledger.csv`, and `evidence_ledger.csv` linked or copied into the branch.
 - When resuming from a Figure/result, preserve the original Figure ID in the branch state, then assign new IDs only when the manuscript structure changes.
-- If the user chooses a new downstream module, treat it as `new_module_loop`, not as a silent replacement of the previous module.
+- If the user chooses a new downstream module, treat it as `new_module_loop`, including a fresh `$co-debate` Top 5 ranking and hypothesis selection, not as a silent replacement of the previous module.
 - Do not run `$co-distill` or `$co-topic` in the active `$co-paper` branch unless the user explicitly requests those legacy tools.

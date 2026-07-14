@@ -1,15 +1,15 @@
 ---
 name: co-completer
-description: Complete the final stage of an interactive modular biomedical or life-science paper workflow, or review, revise, supplement, and complete an existing manuscript. Use when Codex needs reviewer-style critique plus manuscript writing, completion judgment, dynamic branch/resume decisions, new project/subfolder creation, or a new downstream module loop through co-search, co-plan, and co-result. Also use when Codex needs to plan upstream/downstream mechanism extensions, recommend bioinformatics analyses and public datasets, recommend validation experiments, then use co-result to rewrite Results from real, assumed, or explicitly approved virtual results with red bold markup and Markdown plus Word export. 用于作为 co-paper 终稿后的完成器，执行审稿式批评、写作补全、完成判定、动态回跳/分支、新项目/子文件夹创建，或启动新的下游模块循环 co-search/co-plan/co-result；也用于已有论文审稿、修改建议、机制补强、生信和实验补充设计、结果重写、红色加粗标记和 md/docx 导出。
+description: Complete the final stage of an interactive modular biomedical or life-science paper workflow, or review, revise, supplement, and complete an existing manuscript. Use for reviewer-style critique, manuscript writing, completion judgment, dynamic branch/resume decisions, or a new downstream loop through co-search, co-debate, co-plan, and co-result. 用于 co-paper 终稿后的审稿、写作补全、完成判定、动态分支，或启动包含 co-debate 的新模块循环。
 ---
 
 # Co-Completer
 
 ## Operating Goal / 运行目标
 
-Turn a nearly complete manuscript into a review-driven completion package. In `$co-paper`, `$co-completer` is the final gate after `manuscript/full_manuscript.md`: it reviews, writes or rewrites what is needed, and then asks the user to choose whether to mark the project complete, branch/resume from an earlier checkpoint, or start a new downstream module loop through `$co-search`, `$co-plan`, and `$co-result`. For standalone manuscripts, the sequence is strict: review first, propose changes second, wait for user approval third, then add revision text, bioinformatics supplements, experimental supplements, and revised Results. Default to Chinese for user-facing reports unless the manuscript itself is English; if the manuscript is English, write the manuscript-facing revision and Results in English.
+Turn a nearly complete manuscript into a review-driven completion package. In `$co-paper`, `$co-completer` is the final gate after `manuscript/full_manuscript.md`: it reviews, writes or rewrites what is needed, and then asks the user to choose whether to mark complete, branch/resume, or start a new module loop through `$co-search`, user module selection, `$co-debate`, user hypothesis selection, `$co-plan`, and `$co-result`.
 
-将接近完成的全文转化为一个“审稿驱动的完成包”。在 `$co-paper` 中，`$co-completer` 是 `manuscript/full_manuscript.md` 之后的最后关口：它负责审稿、必要写作或改写，然后让用户选择标记项目完成、从早期节点动态回跳/分支继续，或启动新的下游模块循环 `$co-search -> $co-plan -> $co-result`。对独立已有论文，流程仍严格遵循：先审稿、再建议、等待用户同意、再补写。默认中文输出；如果原文是英文，论文正文、结果段落和图注使用英文。
+将接近完成的全文转化为“审稿驱动的完成包”。如需新增模块，必须重新经过 `$co-search → 用户选模块 → $co-debate Top 5 → 用户选假说 → $co-plan → $co-result`。
 
 ## Core Workflow / 核心流程
 
@@ -65,7 +65,7 @@ Turn a nearly complete manuscript into a review-driven completion package. In `$
    - Stop and ask the user to choose one of three routes:
      1. `complete_project`: mark the current project complete and save `project_completion_record.md`.
      2. `dynamic_branch`: return to an earlier checkpoint, choose another module/Figure/result/experiment node, and create a new project or subfolder under `branches/YYYYMMDD_<target>/` or the user-requested folder.
-     3. `new_module_loop`: choose the next downstream module and restart `$co-search -> $co-plan -> $co-result`.
+     3. `new_module_loop`: restart `$co-search -> user module choice -> $co-debate -> user hypothesis choice -> $co-plan -> $co-result`.
 
 ## Human Checkpoints / 用户确认点
 
@@ -74,7 +74,7 @@ Stop and ask the user to confirm at these points:
 1. After `completion_revision_plan.md`: ask which changes to accept.
 2. Before any virtual or simulated Results: ask whether virtual positive results are allowed and what direction should be simulated.
 3. Before final export if major claims are still `assumed` or `virtual_positive`: ask whether to keep them as manuscript text, move them to proposed future work, or label them only in the project report.
-4. After `completion_decision_menu.md`: ask whether to mark complete, branch/resume into a new project or subfolder, or start a new downstream module loop through `$co-search`, `$co-plan`, and `$co-result`.
+4. After `completion_decision_menu.md`: ask whether to mark complete, branch/resume, or start a new module loop that includes `$co-debate` and both user selections.
 
 ## Required Outputs / 必要输出
 

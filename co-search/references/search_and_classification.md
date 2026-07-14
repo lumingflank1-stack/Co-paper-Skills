@@ -38,27 +38,27 @@ Save `module_options.md` with the five sections below. Each section should list 
 
 ## 1. New Phenotypes
 
-| Option | Innovation point | Representative papers | Why useful | First co-plan move |
+| Option | Innovation point | Representative papers | Why useful | First co-debate move |
 |---|---|---|---|---|
 
 ## 2. New Mechanisms
 
-| Option | Innovation point | Representative papers | Why useful | First co-plan move |
+| Option | Innovation point | Representative papers | Why useful | First co-debate move |
 |---|---|---|---|---|
 
 ## 3. New Molecule Types
 
-| Option | Innovation point | Representative papers | Why useful | First co-plan move |
+| Option | Innovation point | Representative papers | Why useful | First co-debate move |
 |---|---|---|---|---|
 
 ## 4. New Experimental Methods
 
-| Option | Innovation point | Representative papers | Why useful | First co-plan move |
+| Option | Innovation point | Representative papers | Why useful | First co-debate move |
 |---|---|---|---|---|
 
 ## 5. New Bioinformatics Analyses
 
-| Option | Innovation point | Representative papers | Why useful | First co-plan move |
+| Option | Innovation point | Representative papers | Why useful | First co-debate move |
 |---|---|---|---|---|
 
 ## Recommended Choice
@@ -67,7 +67,24 @@ Save `module_options.md` with the five sections below. Each section should list 
 - Rationale:
 - What it can answer:
 - What it cannot answer:
-- Suggested prompt for `$co-plan`:
+- Suggested prompt for `$co-debate`:
+```
+
+## Co-Debate Handoff
+
+After the user selects one module, save `co_debate_handoff.md`:
+
+```markdown
+# Co-Debate Handoff
+
+- Selected innovation family:
+- Selected innovation point:
+- User selection reason:
+- Parent or parallel module:
+- Key supporting papers and evidence-ledger rows:
+- Known mechanisms or targets to avoid:
+- Main uncertainties:
+- Required debate output: five competing hypotheses ranked highest to lowest
 ```
 
 ## Evidence Tier Labels

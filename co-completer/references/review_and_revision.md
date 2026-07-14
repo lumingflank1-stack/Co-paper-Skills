@@ -89,7 +89,7 @@ Route definitions:
 
 - `complete_project`: write `project_completion_record.md`, mark the final manuscript path, source ledgers, figures, review, and completion date.
 - `dynamic_branch`: create or propose `branches/YYYYMMDD_<target>/` or a user-named new project/subfolder; resume from a module, plan, Figure/result, node-discovery, validation, or manuscript revision checkpoint.
-- `new_module_loop`: define one downstream module question, run `$co-search` to classify innovation points, ask the user to choose one module, run `$co-plan`, then close that module with `$co-result`.
+- `new_module_loop`: define one downstream question, run `$co-search`, ask the user to choose one module, run `$co-debate` and ask the user to choose one ranked hypothesis, run `$co-plan`, then close with `$co-result`.
 
 ## Review Tone
 

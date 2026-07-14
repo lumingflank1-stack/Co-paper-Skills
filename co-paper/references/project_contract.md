@@ -9,12 +9,14 @@ project_slug/
 ├── project_state.md
 ├── decision_log.md
 ├── module_ledger.csv
+├── hypothesis_ledger.csv
 ├── evidence_ledger.csv
 ├── source_mode_ledger.csv
 ├── 01_search/
 ├── 02_modules/
 ├── module_01/
 │   ├── plan/
+│   ├── debate/
 │   ├── scripts/
 │   ├── figures/
 │   ├── tables/
@@ -42,7 +44,13 @@ branches/
 
 ## Module Ledger Columns
 
-`module_id,relationship_type,parent_module_id,parallel_group,innovation_family,selected_innovation_point,biological_question,active_claim,discovery_status,validation_status,rescue_status,plan_file,result_file,source_modes,result_interpretation,next_downstream_options,user_decision,status`
+`module_id,relationship_type,parent_module_id,parallel_group,innovation_family,selected_innovation_point,selected_hypothesis_id,selected_hypothesis,biological_question,active_claim,discovery_status,validation_status,rescue_status,plan_file,result_file,source_modes,result_interpretation,next_downstream_options,user_decision,status`
+
+## Hypothesis Ledger Columns
+
+`module_id,selected_innovation_point,hypothesis_id,rank,hypothesis_name,novelty,evidence_strength,feasibility,causal_testability,translational_value,collision_risk,risk_penalty,total,user_decision,status,co_plan_handoff`
+
+Record all five ranked `$co-debate` hypotheses. Mark exactly one as `selected` before `$co-plan`; the others remain `not_selected`, `high_risk`, `weakened`, or `rejected`.
 
 Relationship values:
 
@@ -106,6 +114,9 @@ For any virtual or assumed-positive major claim, save `virtual_result_rationale.
 - Options considered:
 - Innovation family:
 - Selected module:
+- Top 5 hypothesis ranking file:
+- Selected hypothesis ID and rank:
+- Selected hypothesis:
 - Module relationship: standalone / parallel / progressive_downstream / progressive_upstream
 - Parent or parallel module:
 - Reason:
@@ -120,6 +131,7 @@ For any virtual or assumed-positive major claim, save `virtual_result_rationale.
 ## Final Assembly Checklist
 
 - Every included module has a result file and source-mode entries.
+- Every included module records the five co-debate hypotheses and the user's selected hypothesis.
 - Every included module records its relationship to other modules: standalone, parallel, upstream, or downstream.
 - Every complete module has both a node-discovery layer and a validation layer, or explicitly marks one layer as requirements-only/missing.
 - Mediator claims include rescue evidence or an explicit unresolved-rescue note.
@@ -139,10 +151,11 @@ For any virtual or assumed-positive major claim, save `virtual_result_rationale.
 After `$co-completer`, do not treat the workflow as closed until the user chooses a terminal route. The user may resume from any checkpoint with enough state:
 
 - `module_search`: go back to `$co-search` and classify innovation points for a new downstream question.
-- `module_plan`: revise or rerun `$co-plan` for an existing module.
+- `module_debate`: rerun `$co-debate`, rerank the Top 5, or select another hypothesis without overwriting prior outputs.
+- `module_plan`: revise or rerun `$co-plan` for the user-selected hypothesis.
 - `module_result`: regenerate or extend `$co-result` for a selected module.
 - `figure_or_result`: select a Figure, panel, result, or failed experiment and call `$co-plan` for the next public-data, node-discovery, validation, or virtual-result round.
 - `manuscript_revision`: use `completion_review.md` and `completion_revision_plan.md` as the roadmap and regenerate affected Results, Methods, Introduction, Discussion, figures, or full manuscript.
-- `new_module_loop`: restart `$co-search -> $co-plan -> $co-result` for a downstream module chosen by the user.
+- `new_module_loop`: restart `$co-search -> user module choice -> $co-debate -> user hypothesis choice -> $co-plan -> $co-result`.
 
 When branching, create a new folder under `branches/YYYYMMDD_<resume_target>/`, copy or reference inherited files in `inherited_files.md`, and never overwrite the prior manuscript unless the user explicitly asks to overwrite.
