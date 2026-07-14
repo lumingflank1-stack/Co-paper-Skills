@@ -50,4 +50,3 @@ Write `completion_decision_menu.md` with:
 - Keep `module_ledger.csv`, `source_mode_ledger.csv`, and `evidence_ledger.csv` linked or copied into the branch.
 - When resuming from a Figure/result, preserve the original Figure ID in the branch state, then assign new IDs only when the manuscript structure changes.
 - If the user chooses a new downstream module, treat it as `new_module_loop`, including a fresh `$co-debate` Top 5 ranking and hypothesis selection, not as a silent replacement of the previous module.
-- Do not run `$co-distill` or `$co-topic` in the active `$co-paper` branch unless the user explicitly requests those legacy tools.

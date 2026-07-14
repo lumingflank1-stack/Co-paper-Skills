@@ -53,9 +53,7 @@ final co-result -> co-method -> co-discussion
 -> full_manuscript.md -> co-completer
 ```
 
-## 为什么增加 co-debate
-
-旧版独立 `biomedical-co-scientist` 同时承担假说生成、分析规划、结果解释和转化设计，与 `co-plan`、`co-result` 的职责重叠。现在已删除该独立技能，并将其最关键的科学辩论能力收敛为 `co-debate`。
+## 技能职责边界
 
 职责边界如下：
 
@@ -113,11 +111,7 @@ co-result/      模块结果、图版和来源账本
 co-method/      Methods
 co-discussion/  Introduction、Discussion 和文献
 co-completer/   终审、补强和动态恢复
-co-distill/     独立旧式文章套路蒸馏，不属于 co-paper 主链
-co-topic/       独立旧式课题生成，不属于 co-paper 主链
 ```
-
-`biomedical-co-scientist/` 已删除，不再提供兼容入口。
 
 ## 触发示例
 

@@ -24,8 +24,6 @@ Use one or more:
 - Analysis results, figures, tables, or experiment notes from a previous module.
 - User constraints: species, data type, local compute, assays, timeline, target journal.
 
-Do not require topic cards from `$co-topic` or distilled routines from `$co-distill` in the active `$co-paper` workflow.
-
 ## Workflow / 工作流
 
 1. Confirm the selected module family, innovation point, hypothesis ID, rank, and user selection. If no hypothesis was selected, return to `$co-debate`.

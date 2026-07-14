@@ -1,4 +1,0 @@
-interface:
-  display_name: "Co-Distill"
-  short_description: "Distill paper routines into reusable templates"
-  default_prompt: "Use $co-distill to extract the reusable research routine, figure logic, datasets, and validation pattern from a paper cluster."

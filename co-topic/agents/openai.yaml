@@ -1,4 +1,0 @@
-interface:
-  display_name: "Co-Topic"
-  short_description: "Generate topics from distilled paper routines"
-  default_prompt: "Use $co-topic to generate ranked biomedical research topics from a distilled paper routine and evidence ledger."

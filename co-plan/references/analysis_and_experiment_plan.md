@@ -194,6 +194,5 @@ Pre-register support levels:
 ## What Not To Do
 
 - Do not design all upstream and downstream modules at once.
-- Do not require `$co-distill` or `$co-topic` inputs.
 - Do not turn a literature innovation point into a causal claim without planned evidence.
 - Do not write Results from a plan unless real, partial, assumed, or explicitly approved virtual results exist.

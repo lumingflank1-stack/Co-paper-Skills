@@ -22,7 +22,6 @@ Use the most complete available version / 使用可获得的最完整版本：
 - Figure legends or figure plan / 图注或图版计划。
 - Evidence ledger and source mode ledger from `$co-paper` / `$co-paper` 的证据账本和来源模式账本。
 - Literature matrix from `$co-search` / `$co-search` 的文献矩阵。
-- Distilled routine from `$co-distill`, when available / 如有，则使用 `$co-distill` 的套路蒸馏结果。
 
 If Results are missing, produce an outline and missing-input ledger rather than inventing findings.  
 如果缺少 Results，输出大纲和缺失输入清单，不编造发现。

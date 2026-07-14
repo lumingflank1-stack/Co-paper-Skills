@@ -105,4 +105,3 @@ Use the weakest applicable tier when a paper mixes strong and weak claims.
 - Do not output `topic_classes.md` as the main `$co-paper` decision file.
 - Do not ask the user to choose a whole literature class.
 - Do not infer a complete study design from one paper or one literature cluster.
-- Do not send the user to `$co-distill` or `$co-topic` in the main `$co-paper` workflow.

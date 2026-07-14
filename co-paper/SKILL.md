@@ -1,6 +1,6 @@
 ---
 name: co-paper
-description: Orchestrate a stateful modular biomedical paper workflow through co-search, user module selection, co-debate Top 5 hypothesis ranking, user hypothesis selection, co-plan, co-result, and final manuscript assembly. Use when Codex must build one research module at a time while preserving evidence provenance, discovery and validation layers, explicit human checkpoints, branching, and completion review. Do not use co-distill or co-topic in the main route. 用于按模块递进构建生物医学论文：co-search 分类创新模块，用户选模块，co-debate 生成并排序 Top 5 假说，用户再选一个假说，co-plan 规划，co-result 关闭模块，最后组装全文并由 co-completer 审核。
+description: Orchestrate a stateful modular biomedical paper workflow through co-search, user module selection, co-debate Top 5 hypothesis ranking, user hypothesis selection, co-plan, co-result, and final manuscript assembly. Use when Codex must build one research module at a time while preserving evidence provenance, discovery and validation layers, explicit human checkpoints, branching, and completion review. 用于按模块递进构建生物医学论文：co-search 分类创新模块，用户选模块，co-debate 生成并排序 Top 5 假说，用户再选一个假说，co-plan 规划，co-result 关闭模块，最后组装全文并由 co-completer 审核。
 ---
 
 # Co-Paper / 模块化论文工作流总控
@@ -62,7 +62,6 @@ Do not close a module as complete when only discovery evidence exists. Record th
 
 ## Prohibited Mainline Steps / 主线禁用步骤
 
-- Do not call `$co-distill` or `$co-topic` in the main route.
 - Do not skip `$co-debate` after module selection.
 - Do not call `$co-plan` before the user selects one ranked hypothesis.
 - Do not classify whole papers as reusable complete routines.
