@@ -1,6 +1,6 @@
 ---
 name: co-discussion
-description: Research literature and draft numbered-citation Introduction and Discussion sections from completed Results, evidence ledgers, and manuscript claim maps. Use when Codex needs to write or plan Introduction, Discussion, literature positioning, limitations, future directions, numbered references, or full-manuscript narrative around biomedical results. 用于先调研文献，再基于结果撰写带编号引用的引言和讨论。
+description: Research literature and draft numbered-citation Introduction and Discussion after co-result and co-method, then prepare the full-manuscript handoff. Use in co-paper when Results and Methods are stable to position the three-module evidence cycle, interpret claims conservatively, address rival explanations and limitations, produce numbered references, and hand all sections to manuscript/full_manuscript.md assembly.
 ---
 
 # Co-Discussion / 引言与讨论撰写
@@ -19,9 +19,11 @@ Default to Chinese manuscript prose unless the user requests English or another 
 Use the most complete available version / 使用可获得的最完整版本：
 
 - Results section from `$co-result` / `$co-result` 生成的 Results。
+- `methods.md`, result-to-method map, and `co_discussion_handoff.md` from `$co-method`.
 - Figure legends or figure plan / 图注或图版计划。
 - Evidence ledger and source mode ledger from `$co-paper` / `$co-paper` 的证据账本和来源模式账本。
 - Literature matrix from `$co-search` / `$co-search` 的文献矩阵。
+- Distilled routine from `$co-distill`, when available / 如有，则使用 `$co-distill` 的套路蒸馏结果。
 
 If Results are missing, produce an outline and missing-input ledger rather than inventing findings.  
 如果缺少 Results，输出大纲和缺失输入清单，不编造发现。
@@ -76,6 +78,13 @@ Save in `manuscript/` or the requested directory / 保存到 `manuscript/` 或�
 - `citation_ledger.csv`
 - `claim_evidence_citation_map.csv`
 - `limitations_and_alternatives.md`
+- `full_manuscript_handoff.md`
+
+## Downstream Handoff
+
+After writing Introduction, Discussion, references, and limitations, save `full_manuscript_handoff.md` listing the approved Results, Methods, Introduction, Discussion, references, figure legends, source ledgers, and unresolved submission blockers. Return this package to `$co-paper` for `manuscript/full_manuscript.md` assembly, then continue to `$co-completer`.
+
+Do not stop the manuscript route at `$co-discussion`, and do not silently rewrite Results or Methods to fit the narrative.
 
 If literature search is blocked, save `literature_search_blockers.md` and draft only a citation-placeholder scaffold.  
 如果文献检索受阻，保存 `literature_search_blockers.md`，只写带引用占位符的骨架。

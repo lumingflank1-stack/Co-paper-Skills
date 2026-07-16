@@ -1,77 +1,65 @@
 ---
 name: co-plan
-description: Design an executable plan for one user-selected biomedical hypothesis within one selected innovation module. Use after co-search module selection and co-debate Top 5 ranking, only when the user has chosen one hypothesis. Plan module relationship, public-data analysis, node discovery, validation, mediator rescue, virtual-result prompts, and next-module rules. 用于用户先选择创新模块、再从 co-debate Top 5 中选择一个假说后，为该单一假说设计模块关系、生信、发现层、验证层和 rescue 计划。
+description: Design one coordinated biomedical evidence plan directly from a user's research field, disease, phenotype, intervention, molecule, or selected hypothesis. Use as the first active stage of co-paper to simultaneously produce a bioinformatics exploration module, an experimental validation module, and an independent bioinformatics validation module, with cross-module claims, decision rules, rescue logic, datasets, assays, and source-mode requirements.
 ---
 
-# Co-Plan / 模块分析与实验计划
+# Co-Plan / 三模块研究计划
 
-## Operating Goal / 运行目标
+## Goal
 
-**English:** Convert one user-selected hypothesis within one selected innovation module into the next executable research step. Do not plan directly from an unranked module and do not design the whole paper at once.
+Convert the user's research seed directly into one executable evidence cycle containing three coordinated modules. Do not require `$co-search`, innovation-family selection, topic cards, or a prior debate.
 
-**中文：** 将用户从 `$co-debate` Top 5 中选中的一个假说转化为下一步可执行研究动作。不要从未辩论的模块直接规划，也不要一次性设计整篇论文。
+Default to Chinese reports unless the user requests another language.
 
-Default to Chinese reports unless the user requests another language. Generated Markdown reports should be Chinese-only by default; do not create bilingual project reports unless explicitly requested.
-
-## Inputs / 输入
+## Inputs
 
 Use one or more:
 
-- Selected innovation module from `$co-search`.
-- Selected hypothesis and rank from `$co-debate`.
-- `co_plan_handoff.md`, including predictions, alternative explanation, falsification criteria, and evidence gaps.
-- `innovation_points.md`, `innovation_point_matrix.csv`, or `module_options.md`.
-- Analysis results, figures, tables, or experiment notes from a previous module.
-- User constraints: species, data type, local compute, assays, timeline, target journal.
+- Research field, disease, phenotype, biological process, intervention, or molecule supplied by the user.
+- A selected `$co-debate` hypothesis, when available.
+- Existing data, figures, tables, pilot experiments, or manuscript claims.
+- Constraints: species, tissue/cell type, data type, assays, compute, timeline, and target journal.
 
-## Workflow / 工作流
+## Workflow
 
-1. Confirm the selected module family, innovation point, hypothesis ID, rank, and user selection. If no hypothesis was selected, return to `$co-debate`.
-2. Convert the selected hypothesis into one conservative active claim.
-3. Classify the module relationship as `standalone`, `parallel`, `progressive_downstream`, or `progressive_upstream`; record the parent module or parallel group when known.
-4. Plan both required evidence layers unless the user explicitly marks the module exploratory-only:
-   - Node-discovery layer: how to find the new molecule, mechanism node, phenotype-linked mediator, method readout, or analysis target.
-   - Validation layer: how to perturb the upstream/input side and observe the downstream/output side.
-5. If the active claim tests a mediator, add rescue logic or mark rescue as a missing decisive experiment.
-6. For public-data analysis, list datasets, metadata, comparison groups, confounders, output figures, and decision rules. Create a ranked user-download priority list before any analysis when local files are not already available.
-7. For virtual results, first perform or request a compact literature, public-data feasibility, and novelty scan unless the user fixes the result axis. Specify whether virtual results are needed for discovery, validation, rescue, or all layers.
-8. Save plan files and next-module decision rules.
+1. Define the research question, active claim, exposure/input, candidate mediator, outcome, biological context, and evidence boundary.
+2. Plan all three modules simultaneously:
+   - **Bioinformatics exploration:** select discovery datasets or user data, QC, contrasts, covariates, candidate-generation analyses, prioritization rules, and exploration figures.
+   - **Experimental validation:** define model, groups, perturbation, dose/time, phenotype and molecular readouts, direct-binding or mechanism assays, controls, rescue, falsification result, and backup plan.
+   - **Bioinformatics validation:** select independent datasets or orthogonal computational methods; define replication, robustness, specificity, external/clinical validation, and validation figures.
+3. Map every major claim to the module that discovers it and the modules that test it.
+4. Prevent circular validation: exploration and validation must not reuse the same cohort, contrast, feature selection, and model without an explicit resampling or held-out design.
+5. Define strong support, partial support, neutral, contradictory, and not-interpretable outcomes for each module and for the integrated claim.
+6. Mark unavailable modules as `requirements_only` or `missing`; never hide the gap.
+7. For mediator claims, require rescue or explicitly mark the causal tier as incomplete.
+8. For virtual results, require explicit user approval and record which modules may be simulated.
+9. Save plan files and a `$co-result` handoff.
 
-Read `references/analysis_and_experiment_plan.md` for schemas and decision rules.
-读取 `references/analysis_and_experiment_plan.md` 获取格式和判断规则。
+Read `references/analysis_and_experiment_plan.md` for schemas and decision rules. Use `scripts/create_plan_templates.py` when a blank plan folder is useful.
 
-Use `scripts/create_plan_templates.py` when a blank module folder is useful.
-需要空白模块目录时使用 `scripts/create_plan_templates.py`。
+## Evidence Rules
 
-## Evidence Rules / 证据规则
+- Plan before analyzing and predefine interpretation thresholds.
+- Prefer sample- or donor-level inference over cell-level-only significance.
+- Treat enrichment, networks, regulons, trajectories, ligand-receptor inference, and CMap as hypothesis-generating.
+- Bioinformatics validation requires an independent cohort, held-out subset, orthogonal data type, or genuinely orthogonal analysis; label weaker checks honestly.
+- Experimental causality requires perturbation and downstream readout; mediator claims require rescue for the strongest tier.
+- Default large public-data downloads to user-managed unless the user requests Codex-side download.
 
-- Plan before analyzing and define interpretation thresholds before seeing results.
-- Default public data acquisition to user-managed download.
-- Prefer sample- or donor-level inference over cell-level-only associations.
-- Treat enrichment, ligand-receptor, GRN, regulon, trajectory, and CMap outputs as hypothesis-generating unless directly validated.
-- A complete module plan must define support, partial support, neutral, contradictory, and not-interpretable outcomes separately for the discovery layer and validation layer.
-- Do not close a mechanism module from discovery-only omics or screening evidence; require perturbation and downstream readout validation, or mark validation as missing/requirements-only.
-- For mediator claims, rescue is the decisive validation tier unless the user explicitly accepts a weaker module.
-- Virtual results can be used only when explicitly requested. Record source mode in plan files and ledgers.
+## Required Outputs
 
-## Required Outputs / 必要输出
+Save under `01_plan/` or the requested directory:
 
-Save in `02_modules/`, `module_##/plan/`, or the chosen directory:
-
-- `module_plan.md`
-- `selected_hypothesis.md`
-- `analysis_plan.md`
-- `dataset_manifest.csv`
-- `experiment_plan.md`
-- `node_discovery_plan.md`
-- `validation_plan.md`
-- `module_relationship.md`
-- `virtual_result_prompt.md`
-- `next_module_decision_rules.md`
-- `risks_and_controls.md`
-
-When local public data are not yet present, also save:
-
-- `data_download_priority.md`: ranked dataset/accession list, why each dataset matters for this module, required files and metadata, suggested local folder name, analysis to run after user download, and what evidence remains impossible without that dataset.
-
-After each completed module, update the next-module decision rules with downstream options and a refreshed priority list for not-yet-analyzed datasets.
+- `research_question_and_claim.md`
+- `integrated_three_module_plan.md`
+- `claim_module_map.csv`
+- `bioinformatics_exploration_plan.md`
+- `exploration_dataset_manifest.csv`
+- `experimental_validation_plan.md`
+- `bioinformatics_validation_plan.md`
+- `validation_dataset_manifest.csv`
+- `decision_rules.md`
+- `risks_controls_and_rescue.md`
+- `data_download_priority.md` when datasets are absent
+- `virtual_result_prompt.md` only when requested
+- `co_result_handoff.md`

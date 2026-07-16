@@ -1,4 +1,4 @@
 interface:
   display_name: "Co-Plan"
-  short_description: "Plan a module with discovery and validation"
-  default_prompt: "Use $co-plan only after I select one $co-debate hypothesis; design its module relationship, discovery layer, validation layer, rescue, data plan, and decision rules."
+  short_description: "Plan three coordinated evidence modules"
+  default_prompt: "Use $co-plan directly from my research question or molecule to design bioinformatics exploration, experimental validation, and independent bioinformatics validation modules with decision rules and rescue logic."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Co-Mimic"
+  short_description: "Manage search, topic generation, and hypothesis debate"
+  default_prompt: "Use $co-mimic as the parent orchestrator: manage $co-search, distill the routine, manage $co-topic, then manage $co-debate and return the selected hypothesis."

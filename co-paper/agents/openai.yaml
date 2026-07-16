@@ -1,4 +1,4 @@
 interface:
   display_name: "Co-Paper"
-  short_description: "Build biomedical papers one module at a time"
-  default_prompt: "Use $co-paper to search innovation modules, let me choose one, use $co-debate to rank five hypotheses, let me choose one hypothesis, then run $co-plan and $co-result before deciding the next module or final manuscript."
+  short_description: "Plan and write a three-module evidence cycle"
+  default_prompt: "Use $co-paper from my research field, molecule, or $co-mimic-selected hypothesis. Run $co-plan, $co-result, $co-method, and $co-discussion, assemble full_manuscript.md, then use $co-completer."

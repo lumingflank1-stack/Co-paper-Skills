@@ -1,0 +1,4 @@
+interface:
+  display_name: "Co-Topic"
+  short_description: "Generate topics from a distilled routine"
+  default_prompt: "Use $co-topic as a $co-mimic-managed subskill to generate and rank 3-5 topic candidates, preserve unknown targets as ???, and return the selected topic to $co-mimic."

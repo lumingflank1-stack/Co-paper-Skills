@@ -1,132 +1,106 @@
 ---
 name: co-paper
-description: Orchestrate a stateful modular biomedical paper workflow through co-search, user module selection, co-debate Top 5 hypothesis ranking, user hypothesis selection, co-plan, co-result, and final manuscript assembly. Use when Codex must build one research module at a time while preserving evidence provenance, discovery and validation layers, explicit human checkpoints, branching, and completion review. 用于按模块递进构建生物医学论文：co-search 分类创新模块，用户选模块，co-debate 生成并排序 Top 5 假说，用户再选一个假说，co-plan 规划，co-result 关闭模块，最后组装全文并由 co-completer 审核。
+description: Orchestrate a biomedical paper workflow that starts directly from the user's research field, disease, phenotype, intervention, molecule, or a hypothesis selected by co-mimic, and runs co-plan -> co-result -> co-method -> co-discussion -> full manuscript -> co-completer. Co-search is not a co-paper stage. When topic development is requested, use co-mimic as the separate parent orchestrator that manages co-search, co-topic, and co-debate.
 ---
 
-# Co-Paper / 模块化论文工作流总控
+# Co-Paper / 生物医学论文执行主控
 
-## Operating Goal / 运行目标
+## Goal
 
-Build a biomedical paper as a graph of independently testable modules rather than one monolithic design. Advance one module at a time, preserve source provenance, and stop at required user decisions unless automatic continuation is explicitly authorized.
+Turn the user's research question, field, disease, phenotype, intervention, molecule, or a selected `$co-debate` hypothesis directly into an executable three-module evidence plan and then a Results package.
 
-把论文构建为一组可独立检验、可上下游或并列连接的研究模块，而不是一次性设计整篇文章。每轮只推进一个模块，保存证据来源，并在必要的人类决策点暂停。
+Default to Chinese for project reports and manuscript files unless the user requests another language.
 
-Default user-facing reports and manuscript files to Chinese unless another language is requested.
-
-## Core Workflow / 核心流程
+## Core Route
 
 ```text
-co-search
--> user chooses one innovation module
--> co-debate generates and ranks Top 5 hypotheses
--> user chooses one hypothesis
+user research field / molecule / question / selected hypothesis
 -> co-plan
+   -> bioinformatics exploration module
+   -> experimental validation module
+   -> bioinformatics validation module
 -> co-result
--> user chooses upstream/downstream/parallel module or ends project
-```
-
-If continuing, repeat the full loop from `$co-search`, including `$co-debate`. If ending:
-
-```text
-final co-result integration
 -> co-method
 -> co-discussion
 -> manuscript/full_manuscript.md
 -> co-completer
 ```
 
-## Module Evidence Contract / 模块证据契约
+Do not automatically call `$co-mimic`, `$co-search`, `$co-topic`, or `$co-debate` inside Co-Paper. Topic development is a separate optional workflow controlled by Co-Mimic:
 
-Every module must distinguish:
+```text
+co-mimic
+|-- co-search
+|-- internal routine distillation
+|-- co-topic
+`-- co-debate
+```
 
-1. **Node-discovery layer:** omics, public data, screening, single-cell/spatial analysis, proteomics, metabolomics, or another broad method finds the relevant phenotype, molecule, mechanism node, or readout.
-2. **Validation layer:** perturb the upstream/input side and observe the downstream/output side. If a mediator is claimed, include rescue or mark rescue as missing.
+Co-Mimic's selected hypothesis may be handed to Co-Paper as the research question.
 
-Do not close a module as complete when only discovery evidence exists. Record the validation layer as real, partial, assumed, virtual-approved, requirements-only, or missing.
+## Three Required Modules
 
-## Skill Routing / 技能路由
+1. **Bioinformatics exploration:** discover candidate molecules, pathways, phenotypes, cell states, targets, or mechanisms using public data, omics, networks, screens, or user data.
+2. **Experimental validation:** test the nominated axis using perturbation, phenotypic and molecular readouts, direct-binding or mechanism assays, and rescue when claiming a mediator.
+3. **Bioinformatics validation:** test reproducibility and generalizability in independent datasets or orthogonal computational analyses, including cross-cohort replication, robustness, specificity, clinical association, or external validation.
 
-1. Use `$co-search` to retrieve literature and classify innovation points into:
-   - `new_phenotype`
-   - `new_mechanism`
-   - `new_molecule_type`
-   - `new_experimental_method`
-   - `new_bioinformatics_analysis`
-2. Stop and ask the user to choose one innovation module.
-3. Use `$co-debate` on that selected module. Generate exactly five genuinely competing hypotheses, critique them, rank them highest to lowest, and save a selection menu.
-4. Stop and ask the user to choose one hypothesis or request reranking/revision.
-5. Use `$co-plan` only after hypothesis selection. Pass the selected module, selected hypothesis, falsification criteria, alternatives, and evidence gaps.
-6. Use `$co-result` when real, partial, assumed, explicitly approved virtual, or requirements-only evidence is available. Close only the current module.
-7. After closure, ask whether to start an upstream, downstream, parallel, or standalone module, or end the project.
-8. Assemble the manuscript only after the user ends the project.
+Exploration and bioinformatics validation must not reuse the same dataset and contrast as if they were independent evidence. If independent validation is unavailable, mark it `requirements_only` or `missing`.
 
-## Prohibited Mainline Steps / 主线禁用步骤
+## Routing
 
-- Do not skip `$co-debate` after module selection.
-- Do not call `$co-plan` before the user selects one ranked hypothesis.
-- Do not classify whole papers as reusable complete routines.
-- Do not generate positive virtual Results without explicit user permission.
-- Do not force neutral or contradictory evidence into a positive narrative.
+1. Parse the user's question and constraints. Do not require a literature-classification checkpoint.
+2. Call `$co-plan` once to design all three modules as a coordinated evidence cycle.
+3. Ask the user to approve or revise the plan when a consequential choice remains.
+4. Call `$co-result` only when each module has real, partial, assumed, explicitly approved virtual, requirements-only, or missing status.
+5. Integrate the three modules in this order unless evidence supports another order: exploration -> experimental validation -> bioinformatics validation.
+6. Never force a positive story when any module is neutral or contradictory.
+7. When Results stabilize, require `$co-result` to save `methods_input.md` and `discussion_input.md`.
+8. Call `$co-method` to write `manuscript/methods.md` and the Results-to-Methods map.
+9. Call `$co-discussion` with Results plus Methods to write Introduction, Discussion, references, and the full-manuscript handoff.
+10. Assemble `manuscript/full_manuscript.md`, then call `$co-completer`.
 
-## Human Checkpoints / 人类决策点
+Read `references/project_contract.md` before scaffolding or final assembly. Read `references/co_paper_workflow_explanation.md` when explaining or resuming the workflow. Read `references/final_review_and_dynamic_resume.md` before `$co-completer` or a resumed evidence cycle.
 
-Stop unless automatic continuation was explicitly requested:
+Use `scripts/scaffold_project.py` when creating a new project workspace.
 
-1. After `$co-search`: select one innovation module.
-2. After `$co-debate`: select one of the ranked Top 5 hypotheses, rerank, revise, or return to search.
-3. After `$co-plan`: approve analysis/experiment route or revise the plan.
-4. Before `$co-result`: confirm discovery and validation source modes.
-5. Before virtual positive results: confirm direction and permitted virtual layers.
-6. After each `$co-result`: choose the next module relation or end the project.
-7. Before final assembly: confirm source ledgers and rationale files.
-8. After `$co-completer`: choose `complete_project`, `dynamic_branch`, or `new_module_loop`.
+## Source Modes
 
-## State and Provenance / 状态与来源
+- `real`: user-provided or computed result.
+- `partial`: incomplete result; write only supported claims.
+- `assumed`: user directs Codex to treat it as true.
+- `virtual_positive`: explicitly requested simulated result.
+- `requirements_only`: data are absent; write requirements, not findings.
+- `missing`: required evidence is not yet represented.
 
-Read `references/project_contract.md` before scaffolding or final assembly. Read `references/co_paper_workflow_explanation.md` when explaining or changing the workflow. Read `references/final_review_and_dynamic_resume.md` before completion or resume.
+Never invent positive results without explicit permission. Preserve source mode in project ledgers even when manuscript prose uses conventional Results style.
 
-Minimum state files:
+## Minimum State
 
 - `project_state.md`
 - `decision_log.md`
 - `module_ledger.csv`
-- `hypothesis_ledger.csv`
 - `evidence_ledger.csv`
 - `source_mode_ledger.csv`
 
-Use `scripts/scaffold_project.py` for a new project.
+## Human Checkpoints
 
-## Public Data Policy / 公共数据策略
+Stop unless automatic continuation was requested:
 
-Default large or permissioned data to user-managed download. `$co-plan` must save a ranked download list with accession, required files, metadata, analysis role, minimum success condition, and access limitations. Do not automatically download large SRA/dbGaP, Synapse, institutional, Git-LFS, or unstable files unless explicitly requested.
+1. After parsing the research seed when the active claim remains ambiguous.
+2. After `$co-plan` to approve the coordinated three-module plan.
+3. Before virtual or assumed positive results.
+4. Before `$co-result` if any module is unrepresented.
+5. Before full manuscript assembly.
+6. After `$co-completer`: choose `complete_project`, `dynamic_branch`, or `new_evidence_cycle`.
 
-## Manuscript Assembly / 全文组装
+## Required Folders
 
-Only after the user ends the project:
-
-1. Final `$co-result` integrates closed modules and figure logic.
-2. `$co-method` writes Methods from stable Results.
-3. `$co-discussion` writes Introduction, Discussion, and numbered references.
-4. Assemble one `manuscript/full_manuscript.md` in Chinese by default.
-5. `$co-completer` reviews readiness and offers completion, dynamic branch, or a new module loop.
-
-Any new module loop restarts:
-
-```text
-co-search -> user module choice -> co-debate -> user hypothesis choice -> co-plan -> co-result
-```
-
-## Required Outputs / 必要输出
-
-Use default folders:
-
-- `01_search/`
-- `02_modules/`
-- `module_##/debate/`
-- `module_##/plan/`
-- `module_##/figures/`
-- `module_##/tables/`
+- `01_plan/`
+- `02_results/`
+- `modules/bioinformatics_exploration/`
+- `modules/experimental_validation/`
+- `modules/bioinformatics_validation/`
 - `manuscript/`
 - `branches/`
 
-Every final response must list saved paths and the current next decision.
+Final responses must list saved paths and the current next decision.

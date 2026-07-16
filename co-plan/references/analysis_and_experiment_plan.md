@@ -1,198 +1,67 @@
-# Module Analysis and Experiment Plan Schema
+# Three-Module Co-Plan Schema
 
-## Module Plan
+## Integrated plan
 
 ```markdown
-# Module Plan
+# Integrated Three-Module Plan
 
-## Selected Module
-
-- Module ID:
-- Module relationship: standalone / parallel / progressive_downstream / progressive_upstream
-- Parent module ID:
-- Parallel group:
-- Innovation family: new_phenotype / new_mechanism / new_molecule_type / new_experimental_method / new_bioinformatics_analysis
-- Selected innovation point:
-- Selected hypothesis ID and rank:
-- Selected hypothesis:
+## Research seed and active claim
+- Field/disease/context:
+- Molecule/intervention:
+- Exposure/input:
+- Candidate mediator:
+- Outcome:
 - Main alternative explanation:
-- Falsification criteria inherited from co-debate:
-- Upstream context:
-- Downstream question this module could enable:
+- Falsification boundary:
 
-## Active Claim
+## Module A: Bioinformatics exploration
+- Discovery question:
+- Dataset/user data:
+- Required metadata and QC:
+- Contrast/model/covariates:
+- Candidate-generation method:
+- Prioritization rule:
+- Expected figures:
+- Support/failure criteria:
 
-## Evidence Needed To Close This Module
+## Module B: Experimental validation
+- Model and groups:
+- Perturbation/dose/time:
+- Phenotype and molecular readouts:
+- Direct interaction/mechanism assay:
+- Controls:
+- Rescue:
+- Decisive experiment:
+- Support/failure criteria:
 
-- Node-discovery layer:
-- Validation layer:
-- Rescue requirement if this is a mediator claim:
-- Minimum status to treat module as complete:
+## Module C: Bioinformatics validation
+- Independent/orthogonal dataset or held-out design:
+- Replication target:
+- Robustness and specificity tests:
+- Clinical/external validation:
+- Expected figures:
+- Support/failure criteria:
 
-## Planned Route
-
-- Public-data analysis:
-- Node-discovery experiment:
-- Validation experiment:
-- Rescue experiment if mediator:
-- Virtual result prompt:
-- Manuscript integration:
-
-## Decision Rules
-
+## Integrated decision rules
 - Strong support:
 - Partial support:
 - Neutral:
 - Contradictory:
 - Not interpretable:
-
-## Layer-Specific Decision Rules
-
-- Discovery layer support:
-- Discovery layer failure:
-- Validation layer support:
-- Validation layer failure:
-- Rescue support if mediator:
-- Rescue failure if mediator:
-
-## Next Module Options After Result
-
-- If strong support:
-- If partial support:
-- If neutral:
-- If contradictory:
 ```
 
-## Analysis Plan
+## Claim-module map
 
-```markdown
-# Analysis Plan
+`claim_id,claim,exploration_source,experimental_test,bioinformatics_validation,independence_check,rescue_required,minimum_evidence,status`
 
-## Module Question
+## Dataset manifest
 
-## Input Data
+`dataset_id,module,source_database,accession,species,tissue_or_cell_type,data_type,comparison,required_metadata,download_status,local_path,analysis_role,independent_from,minimum_success_condition,notes`
 
-## Required Metadata
+## Circularity check
 
-## Preprocessing and QC
+For each validation analysis state whether it uses an independent cohort, held-out samples, orthogonal modality, preregistered feature set, or genuinely orthogonal method. If none applies, label it internal robustness rather than external validation.
 
-## Main Comparison or Model
+## Virtual result prompt
 
-## Covariates and Confounders
-
-## Decision Rules
-
-## Expected Tables
-
-## Expected Figures
-
-## Failure Modes
-```
-
-## Dataset Manifest Columns
-
-`dataset_id,source_database,accession,title,species,tissue_or_cell_type,data_type,comparison,required_metadata,download_status,local_path,analysis_role,expected_signal,minimum_success_condition,notes`
-
-Download status values:
-
-- `needs_search`
-- `needs_download`
-- `downloaded`
-- `blocked`
-- `not_suitable`
-
-## Experiment Plan
-
-```markdown
-# Experiment Plan
-
-## Discovery Layer
-
-- Biological question:
-- Starting contrast or perturbation:
-- Model or sample:
-- Discovery assay:
-- Data type:
-- Candidate or readout selection rule:
-- Expected molecule/mechanism/phenotype/method readout:
-- Orthogonal shortlist and novelty check:
-- Required controls:
-- Failure or ambiguity mode:
-
-## Validation Layer
-
-- Model:
-- Samples:
-- Upstream/input perturbation:
-- Downstream/output readout:
-- Conditional knockout or tissue/cell-specific knockout:
-- Mass-spectrometry detection or confirmation:
-- Rescue, required if testing a mediator:
-- Direct interaction assay:
-- SPR/BLI/ITC molecular interaction assay:
-- Stimulation:
-- Controls:
-- Time points:
-- Readouts:
-- Expected support result:
-- Falsification result:
-- Sample size logic:
-- Technical risks:
-- Backup plan:
-```
-
-Discovery and validation are different evidence jobs:
-
-- Discovery finds the downstream molecule, mechanism node, phenotype-linked mediator, assay readout, or analysis target for this module.
-- Validation tests whether the selected node, mechanism, method, or phenotype claim is required, sufficient, reproducible, or clinically relevant by perturbing the upstream/input side and measuring the downstream/output side.
-- If the module claims a mediator, validation should include rescue: perturb upstream, restore or block the mediator, and show downstream output restoration or loss.
-- A complete module should not be written as complete from discovery-only evidence unless the user explicitly accepts a requirements-only or exploratory module status.
-
-## Virtual Result Prompt
-
-Use only when the user explicitly wants simulated or virtual results.
-
-Before writing this prompt, perform or require a compact literature/public-data feasibility and novelty scan unless the user has fixed the result axis. Select the result axis that is both plausible and useful for the current module. Save the reasoning in `virtual_result_rationale.md` or `assumed_result_explanation.md`.
-
-```markdown
-# Virtual Result Prompt
-
-You are generating virtual planning data for manuscript drafting. Write downstream manuscript-facing prose in conventional Results style, and record virtual source status only in the report or source ledger unless the user asks for visible labels.
-
-Module ID:
-Module relationship:
-Parent or parallel module:
-Innovation family:
-Selected module:
-Active claim:
-Desired result mode: positive / negative / ambiguous / mixed
-Discovery assays to simulate:
-Validation assays to simulate:
-Rescue assays to simulate if mediator:
-Groups:
-Replicates:
-Expected direction:
-Required tables:
-Required figure summaries:
-Constraints:
-Output format:
-Source-status requirement: record virtual status in the report or source ledger; do not repeat labels in every table, figure caption, or result paragraph unless requested.
-Rationale requirement: save a separate rationale file explaining the literature search, public-data feasibility check, novelty scan, closest prior work, selected plausible-and-useful result axis, and remaining uncertainty.
-```
-
-## Decision Rules
-
-Pre-register support levels:
-
-- Strong support: sample-level or perturbation evidence matches prediction and controls major confounders.
-- Partial support: discovery supports the module but decisive perturbation/downstream validation or mediator rescue is missing.
-- Weak support: cell-level-only association or indirect enrichment.
-- Neutral: inconsistent or underpowered result.
-- Contradictory: decisive readout moves opposite to prediction.
-- Not interpretable: missing metadata, failed QC, or inappropriate unit of replication.
-
-## What Not To Do
-
-- Do not design all upstream and downstream modules at once.
-- Do not turn a literature innovation point into a causal claim without planned evidence.
-- Do not write Results from a plan unless real, partial, assumed, or explicitly approved virtual results exist.
+Specify source mode separately for all three modules. Virtual outputs require explicit user approval and a rationale file describing closest prior work, feasibility, novelty boundary, and remaining uncertainty.

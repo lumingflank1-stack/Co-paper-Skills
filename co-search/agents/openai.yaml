@@ -1,4 +1,4 @@
 interface:
   display_name: "Co-Search"
-  short_description: "Search literature innovation modules"
-  default_prompt: "Use $co-search to retrieve biomedical literature, classify five innovation module families, and stop for my module selection before handing off to $co-debate."
+  short_description: "Build the source set managed by Co-Mimic"
+  default_prompt: "Use $co-search under $co-mimic management to build the literature corpus, evidence ledger, method inventory, novelty exclusions, and return control to $co-mimic."

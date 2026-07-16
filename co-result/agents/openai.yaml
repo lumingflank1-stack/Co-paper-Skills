@@ -1,4 +1,4 @@
 interface:
   display_name: "Co-Result"
-  short_description: "Write layered module Results"
-  default_prompt: "Use $co-result to draft Chinese module Results with node-discovery evidence, validation evidence, rescue when needed, figure prompts, raw-data needs, and simulated Excel data when explicitly requested."
+  short_description: "Write integrated three-module Results"
+  default_prompt: "Use $co-result to integrate the three evidence modules into conservative Results, then save explicit methods_input.md and discussion_input.md handoffs for $co-method and $co-discussion."

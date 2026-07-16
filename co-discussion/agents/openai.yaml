@@ -1,4 +1,4 @@
 interface:
   display_name: "Co-Discussion"
   short_description: "Write cited introduction and discussion sections"
-  default_prompt: "Use $co-discussion to research literature and draft numbered-citation Introduction and Discussion sections from Results."
+  default_prompt: "Use $co-discussion after $co-result and $co-method to write cited Introduction and Discussion, limitations and references, then prepare full_manuscript_handoff.md."
