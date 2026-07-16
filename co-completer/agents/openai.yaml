@@ -1,4 +1,4 @@
 interface:
   display_name: "Co-Completer"
   short_description: "Finish, review, branch, or extend paper modules"
-  default_prompt: "Use $co-completer to review and complete a biomedical manuscript, then ask whether to mark complete, branch/resume, or start a new co-search/co-debate/co-plan/co-result module loop."
+  default_prompt: "Use $co-completer after full_manuscript.md to review and revise the paper, then ask whether to complete, branch/resume, or start a new $co-plan -> $co-result -> $co-method -> $co-discussion evidence cycle."

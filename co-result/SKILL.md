@@ -1,112 +1,91 @@
 ---
 name: co-result
-description: Draft Chinese biomedical or life-science manuscript Results sections from user-provided experiment designs, actual results, partial results, or explicitly requested simulated positive results. Use when Codex needs to write or package module-level Results with both node-discovery evidence and validation evidence, figure legends, panel-indexed claims, raw-data requirements, figure prompts or images, or prompt-directed virtual result packages while recording in Markdown reports whether each result is real, assumed, or simulated. 用于撰写包含节点发现层和验证层的模块结果、图注、原始数据需求、图片提示和按要求生成的虚拟结果包。
+description: Draft and package Chinese biomedical Results from a co-plan three-module evidence cycle or user-provided findings, then prepare explicit handoffs for co-method and co-discussion. Use after co-plan to integrate bioinformatics exploration, experimental validation, and independent bioinformatics validation while recording source modes, panel-indexed claims, figures, raw-data requirements, Methods inputs, and Discussion inputs.
 ---
 
-# Co-Result / 结果部分撰写
+# Co-Result / 三模块结果撰写
 
-## Operating Goal / 运行目标
+## Goal
 
-**English:** Turn experiment designs, actual findings, partial findings, or explicitly requested simulated findings into a compact manuscript Results package: Results prose, panel-indexed figure references, figure prompts or images, legends, raw-data requirements, and optional virtual Excel tables.
+Turn the coordinated Co-Plan outputs and available findings into a compact Results package organized around three evidence modules: bioinformatics exploration, experimental validation, and bioinformatics validation.
 
-**中文：** 将实验设计、真实结果、部分结果或用户明确要求的虚拟结果转化为紧凑的论文 Results 包：结果正文、图版索引、图片提示或图片、图注、原始数据需求和可选虚拟 Excel 表。
+Default to Chinese biomedical manuscript style unless the user requests another language.
 
-Default to Chinese biomedical manuscript style unless the user requests another language. All generated Markdown reports, Results drafts, figure legends, source notes, and manuscript inputs should be Chinese-only by default; do not create bilingual Chinese-English project reports unless explicitly requested.
-除非用户要求其他语言，默认使用中文生物医学论文风格。所有生成的 Markdown 报告、Results 草稿、图注、来源说明和全文输入默认只写中文；除非用户明确要求，不生成中英双语项目报告。
+## Source Modes
 
-## Result Source Modes / 结果来源模式
+Choose before drafting:
 
-Choose mode before drafting / 撰写前先判断模式：
+1. `input_results`: actual or partial user-provided/computed results.
+2. `assumed_results`: the user explicitly directs Codex to treat a result as true.
+3. `virtual_positive_results`: the user explicitly requests simulated, mock, expected, or positive virtual results.
+4. `requirements_only`: data are absent or the request asks only for requirements.
+5. `missing`: a required module has no usable evidence or approved substitute.
 
-1. `input_results`: **EN:** user provides actual or partial results; draft only from those inputs.
-   **中：** 用户提供真实或部分结果；只基于这些输入撰写。
-2. `assumed_results`: **EN:** user says the result should be treated as true, such as "假设结果成立"; label it as assumed.
-   **中：** 用户说明“假设结果成立”等；按假设结果处理，并在报告中记录。
-3. `virtual_positive_results`: **EN:** user explicitly asks for virtual, simulated, mock, or positive expected results; generate only according to the prompt.
-   **中：** 用户明确要求虚拟、模拟、mock 或阳性预期结果；只按 prompt 生成。
-4. `requirements_only`: **EN:** user asks what data are needed or the prompt is ambiguous; do not generate results.
-   **中：** 用户只问需要什么数据，或 prompt 不明确；不生成结果，只输出需求。
+Never invent positive findings without explicit permission.
 
-If virtual/simulated results are not explicitly requested, do not invent positive results.
-如果没有明确要求虚拟/模拟结果，不要自行编造阳性结果。
+## Workflow
 
-## Core Workflow / 工作流
+1. Parse the active claim, planned assays, comparisons, endpoints, expected direction, and source mode.
+2. Build a three-module evidence map:
+   - bioinformatics exploration evidence;
+   - experimental validation evidence, including rescue when required;
+   - bioinformatics validation evidence from independent or orthogonal data/analysis.
+3. Confirm each module is `real`, `partial`, `assumed`, `virtual_approved`, `requirements_only`, or `missing`.
+4. Check independence between exploration and validation datasets. Do not present reuse of the same cohort/model as external validation.
+5. Link each conclusion to figure panel, assay/dataset, comparison, module, evidence tier, and source mode.
+6. Write Results in the default order: discovery signal -> experimental perturbation/causality -> independent bioinformatics replication/robustness -> integrated conclusion and boundary.
+7. If evidence is neutral, contradictory, or not interpretable, write that outcome directly rather than forcing a positive narrative.
+8. Write figure legends and raw-data requirements for every panel.
+9. For a full package, identify every independent manuscript Figure and use the available image-generation route when appropriate; otherwise save prompts and blockers.
+10. Generate virtual data or workbooks only in explicitly approved virtual mode. Record simulation status in the Markdown source note and `result_source_ledger.md`, not repeatedly in manuscript prose.
+11. Derive `methods_input.md` from every Results panel, dataset, assay, comparison, statistic, reagent class, and model that requires a reproducible method.
+12. Derive `discussion_input.md` from the central advance, evidence strength, independent validation, rival explanations, limitations, and unresolved claims.
+13. Hand stabilized Results first to `$co-method`, then pass Results plus completed Methods to `$co-discussion`. Do not end the Co-Paper route at `$co-result`.
 
-1. **EN:** Parse biological question, assays, groups, endpoints, expected direction, and source mode.
-   **中：** 解析生物学问题、实验、分组、终点、预期方向和来源模式。
-2. **EN:** For each module, classify its relationship as standalone, parallel, upstream, or downstream, then build a two-layer evidence map: node-discovery evidence and validation evidence.
-   **中：** 对每个模块先标记其关系是独立、并列、上游还是下游，再建立两层证据图：节点发现证据和验证证据。
-3. **EN:** Confirm both layers are present, partial, assumed, explicitly virtual, or requirements-only. If only discovery exists, do not write the module as complete unless the user explicitly accepts an exploratory or requirements-only status.
-   **中：** 确认发现层和验证层均为真实、部分、假设、用户明确批准的虚拟或仅需求状态。如果只有发现层，不要把模块写成完整结论，除非用户明确接受探索性或仅需求状态。
-4. **EN:** Build a logic map linking each conclusion to figure panel, assay, comparison, evidence layer, and source mode.
-   **中：** 建立结果逻辑图，将每个结论连接到图版、实验、比较、证据层和来源模式。
-5. **EN:** Write module Results with panel indexing such as `(Figure 1A)` and `(Figure 1A-D)`. Use this order unless the user specifies otherwise: discovery of the new node/readout, validation by upstream perturbation and downstream readout, rescue if a mediator is claimed, then integrative module conclusion and boundary.
-   **中：** 用 `(Figure 1A)`、`(Figure 1A-D)` 等方式在正文中索引图版。除非用户另有要求，按“发现新节点/读出、上游扰动与下游读出验证、中介 rescue、模块整合结论与边界”的顺序写。
-6. **EN:** Write figure legends after Results and distinguish schematic, discovery assay, representative image, perturbation validation, rescue, quantification, and statistical panels.
-   **中：** Results 后写图注，并区分示意图、代表图、定量图和统计图。
-7. **EN:** For full Results packages, virtual-result packages, assumed-result manuscript packages, or `$co-paper` manuscript assembly, identify every independent manuscript figure from Results text and legends (`Figure 1`, `Figure 2`, etc.), then call the available image generation path (`imagegen` / GPT Image 2 when available) to create one complete multi-panel bitmap per independent figure. Save each selected bitmap in the project workspace, update the manuscript Markdown with image links, and write a figure asset manifest. Do not satisfy a full manuscript package with only one combined montage when multiple independent figures are present. If image generation is unavailable, blocked, or the user asks for text only, save `figure_generation_prompts.md` plus `figure_generation_blockers.md` and state the blocker.
-   **中：** 对完整 Results 包、虚拟结果包、假设结果全文包或 `$co-paper` 全文组装，先从 Results 正文和图注识别所有独立论文图（`Figure 1`、`Figure 2` 等），再默认调用可用图片生成路径（可用时使用 `imagegen` / GPT Image 2）为每个独立 Figure 生成一张完整 multi-panel 位图。每张选定图片都要保存到项目目录，更新全文 Markdown 的图片链接，并写出 figure asset manifest。多个独立 Figure 存在时，不能只用一张总拼图替代完整全文图组。如果图片生成不可用、受阻，或用户要求只输出文字，则保存 `figure_generation_prompts.md` 和 `figure_generation_blockers.md` 并说明原因。
-8. **EN:** Identify raw-data requirements for every claim and panel.
-   **中：** 为每个 claim 和 panel 标出原始数据需求。
-9. **EN:** Generate virtual data only in `virtual_positive_results` mode or when the user explicitly asks for a virtual workbook. Record whether simulation applies to discovery, validation, rescue, or all layers only in Markdown report and `result_source_ledger.md`; do not mark every result paragraph, table row, sheet, numeric block, or figure legend as simulated.
-   **中：** 只有在 `virtual_positive_results` 模式或用户明确要求虚拟 workbook 时才生成虚拟数据。模拟状态只记录在 Markdown 报告和 `result_source_ledger.md` 中，不在每段结果、每行表格、每个 sheet、每个数值块或每条图注里反复标记。
-10. **EN:** Export Markdown and assets by default; export PDF only when requested and supported.
-   **中：** 默认导出 Markdown 和素材；只有用户要求且本地支持时才导出 PDF。
+## Downstream Handoff
 
-## Reference Loading / 参考文件加载
+The required manuscript route is:
 
-- `references/result_writing.md`: Results order and claim strength / 结果顺序和 claim 强度。
-- `references/figure_generation.md`: figure prompts or image generation / 图片提示或图片生成。
-- `references/raw_data_and_virtual_excel.md`: raw-data requirements and virtual Excel / 原始数据需求和虚拟 Excel。
-- `references/output_contract.md`: full package structure / 完整交付结构。
-- `scripts/write_virtual_workbook.py`: structured workbook export / 结构化 workbook 导出。
+```text
+co-result -> co-method -> co-discussion
+-> manuscript/full_manuscript.md -> co-completer
+```
 
-## Drafting Rules / 撰写规则
+- `$co-method` consumes Results, figure legends, `claim_panel_map.csv`, raw-data requirements, and `methods_input.md`.
+- `$co-discussion` consumes Results, Methods, evidence/source ledgers, `discussion_input.md`, and the final claim map.
+- If Results are not stable, mark the handoff blocked and return to `$co-plan` rather than drafting unsupported Methods or Discussion.
 
-- **EN:** Write like Results, not a grant proposal or Discussion.
-  **中：** 写成 Results，不写成基金申请或 Discussion。
-- **EN:** Start from direct evidence, then quantification, mechanism, and integrative conclusion.
-  **中：** 从直接证据开始，再到定量、机制和整合结论。
-- **EN:** For each module, include both the discovery experiment/analysis that found the new node and the validation experiment that perturbs upstream and reads downstream; include rescue when the module tests a mediator.
-  **中：** 每个模块都要同时写出发现新节点的实验/分析，以及干预上游并读取下游的验证实验；如果验证中介，还要写 rescue。
-- **EN:** Avoid causal overstatement; use conservative words unless experiments prove mechanism.
-  **中：** 避免因果过度表述；除非实验直接证明机制，否则使用保守措辞。
-- **EN:** Do not fabricate exact p values, n values, Kd values, fold changes, or clinical endpoints unless provided or explicitly requested for virtual values.
-  **中：** 除非用户提供或明确要求虚拟数值，不编造精确 p 值、n 值、Kd、fold change 或临床终点。
+## Claim Strength Rules
 
-## Virtual Result Rules / 虚拟结果规则
+- Exploration alone supports discovery or association, not causality.
+- Experimental perturbation supports functional relevance; mediator rescue is required for the strongest mediation claim.
+- Bioinformatics validation supports reproducibility, robustness, specificity, or clinical relevance, not experimental causality.
+- A complete integrated claim normally requires all three modules; otherwise state the precise boundary.
+- Do not fabricate exact p values, n values, Kd values, fold changes, or clinical endpoints unless supplied or explicitly requested as virtual values.
 
-Virtual results are allowed only when the user explicitly asks for them.
-只有用户明确要求时才允许虚拟结果。
+## Reference Loading
 
-In virtual mode / 在虚拟模式下：
+- `references/result_writing.md`: Results order and claim strength.
+- `references/figure_generation.md`: figure generation.
+- `references/raw_data_and_virtual_excel.md`: raw-data and virtual workbook rules.
+- `references/output_contract.md`: package structure.
+- `scripts/write_virtual_workbook.py`: optional structured workbook export.
 
-- **EN:** Before generating virtual results, perform a compact literature, public-data feasibility, and novelty scan unless the user provides a fixed result axis. Choose the positive result axis that is both highly plausible and maximally innovative, with no directly equivalent prior study found in the scanned literature. Do not use a generic placeholder. Save an explanation file such as `virtual_result_rationale.md` or `assumed_result_explanation.md` that lists the closest prior work, why the selected axis is different, and what remains uncertain.
-  **中：** 生成虚拟结果前，除非用户已经指定固定结果轴，否则先做一轮简洁的文献、公共数据可行性和创新性扫描。选择既高度可能成立、又最有创新性，且在已扫描文献中未见直接同构研究的阳性结果轴；不使用泛泛占位物。保存 `virtual_result_rationale.md` 或 `assumed_result_explanation.md` 等解释文件，列出最接近的既往工作、所选结果轴的新意差异，以及仍不确定的地方。
-- **EN:** Record virtual-result status once in the Markdown source note and `result_source_ledger.md`.
-  **中：** 只在 Markdown 来源说明和 `result_source_ledger.md` 中记录虚拟结果状态。
-- **EN:** Follow the user's requested direction, assays, groups, variance, and output format.
-  **中：** 遵循用户指定的方向、实验、分组、变异和输出格式。
-- **EN:** Preserve realistic variance and round workbook numeric values to four decimals unless specified otherwise.
-  **中：** 保留合理变异；除非用户另有要求，workbook 数值保留四位小数。
-- **EN:** When the user requests virtual-result mode, write the manuscript-facing Results, legends, Methods inputs, and Discussion inputs in the same conventional style as corresponding analysis or wet-lab findings; keep the virtual source status in the Markdown report and `result_source_ledger.md`, not repeated inside every paragraph, table, or legend.
-  **中：** 当用户要求虚拟结果模式时，面向论文正文的 Results、图注、Methods 输入和 Discussion 输入可按对应生信分析或湿实验结果的常规写法呈现；虚拟来源状态只记录在 Markdown 报告和 `result_source_ledger.md` 中，不在每段正文、每个表格或每条图注里反复标注。
-- **EN:** Keep prose, table cells, figure legends, and workbook data sheets clean unless the user asks for visible labels.
-  **中：** 除非用户要求显式标注，结果正文、表格单元格、图注和 workbook 数据 sheet 保持干净。
+## Required Outputs
 
-## Output Contract / 输出契约
+- `three_module_results_section.md`
+- `module_evidence_map.md`
+- `claim_panel_map.csv`
+- `result_source_ledger.md`
+- `figure_generation_prompts.md`
+- `figure_generation_blockers.md` when needed
+- `figures/Figure_*.png` when generated
+- `figure_asset_manifest.md` when figures are generated
+- `raw_data_requirements_summary.md`
+- `methods_input.md`
+- `discussion_input.md`
+- `downstream_handoff.md`
+- `virtual_result_rationale.md` or `assumed_result_explanation.md` when applicable
+- `*_virtual_raw_data.xlsx` only when explicitly requested
 
-For a full request, save / 完整任务需保存：
-
-- `*_results_section.md`: Results, legends, image links, source notes / 结果、图注、图片链接和来源说明。
-- `result_source_ledger.md`: panel-level source mode map / panel 级来源模式表。
-- `virtual_result_rationale.md` or `assumed_result_explanation.md`: literature/data/novelty rationale for virtual or assumed positive results, including closest prior work and difference from directly equivalent studies / 虚拟或假设阳性结果的文献、数据和创新性解释，包括最接近既往工作及与直接同构研究的差异。
-- `figures/Figure_*.png`: generated planning or manuscript figures by default when image generation is available / 图片生成可用时默认生成的规划图或论文图。
-- `figure_asset_manifest.md`: one row per generated independent figure, with source prompt, saved path, manuscript link status, and inspection note / 每个独立生成 Figure 一行，记录来源 prompt、保存路径、全文链接状态和检查说明。
-- `figure_generation_prompts.md`: prompts for figures / 图片生成 prompt。
-- `figure_generation_blockers.md`: why bitmap figures were not generated, if generation is unavailable or blocked / 图片生成不可用或受阻时的原因说明。
-- `raw_data_requirements_summary.md`: raw-data requirement map / 原始数据需求表。
-- `*_virtual_raw_data.xlsx`: virtual workbook only when explicitly requested / 仅在明确要求时生成虚拟 workbook。
-
-Final response should report saved paths and point to the Markdown source ledger.
-最终回复需报告保存路径，并指向 Markdown 来源账本。
+Final responses must list saved paths and point to the source ledger.

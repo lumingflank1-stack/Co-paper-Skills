@@ -1,6 +1,6 @@
 ---
 name: co-method
-description: Draft concise Chinese biomedical, clinical, or life-science manuscript Methods sections from abstracts, results, figures, protocols, notes, or supplementary material. Use when Codex needs to write, reconstruct, complete, polish, or audit Methods with experimental details, internet-verified reagents, antibodies, primers, shRNA or siRNA sequences, instruments, software versions, numbered software citations, statistics, and medical reporting format. 用于基于结果和资料撰写、补全或审计生物医学论文方法部分。
+description: Draft concise, reproducible biomedical Methods after co-result and prepare a structured handoff for co-discussion. Use in co-paper after Results stabilize to map every bioinformatics exploration, experimental validation, and bioinformatics validation panel to datasets, samples, assays, reagents, instruments, software, statistics, ethics, and reproducibility details, then save manuscript/methods.md and co_discussion_handoff.md.
 ---
 
 # Co-Method / 方法部分撰写
@@ -37,6 +37,28 @@ Default output / 默认输出：
    **中：** 做复现性审计；凡能替换成具体参数、来源或标识符的模糊表达都要替换。
 
 ## Reference Loading / 参考文件加载
+
+## Co-Paper Handoff Contract
+
+In the Co-Paper route, run `$co-method` immediately after `$co-result`.
+
+Required inputs:
+
+- `three_module_results_section.md`
+- Figure legends and `claim_panel_map.csv`
+- `module_evidence_map.md` and `result_source_ledger.md`
+- `raw_data_requirements_summary.md`
+- `methods_input.md`
+
+Required handoff outputs:
+
+- `manuscript/methods.md`
+- `manuscript/result_to_method_map.csv`
+- `manuscript/high_risk_author_verification.md`
+- `manuscript/co_discussion_handoff.md`
+
+The handoff must summarize the study design, three module types, models and cohorts, interventions, assays, statistics, ethics, unresolved method details, and source-mode boundaries. After saving it, continue to `$co-discussion`; do not treat Methods as the end of Co-Paper.
+
 
 - `references/reagent_search.md`: reagents, antibodies, primers, shRNA/siRNA, chemicals, kits, cell lines, plasmids, animal strains, sequencing products / 试剂、抗体、引物、shRNA/siRNA、化学品、试剂盒、细胞系、质粒、动物品系和测序产品。
 - `references/software_citation.md`: R/Python packages, command-line tools, databases, web tools, commercial software, numbered citations / R/Python 包、命令行工具、数据库、网页工具、商业软件和编号引用。

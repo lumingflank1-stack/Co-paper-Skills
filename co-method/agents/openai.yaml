@@ -1,4 +1,4 @@
 interface:
   display_name: "Co-Method"
   short_description: "Concise Chinese Methods drafting"
-  default_prompt: "Use $co-method 根据我的摘要和结果，用中文精简撰写可复现的材料与方法；联网优先从中国公司补全抗体、引物、siRNA/shRNA、试剂、细胞系和软件编号引用，不输出占位项。"
+  default_prompt: "Use $co-method after $co-result to write reproducible Methods for every Results panel, save manuscript/methods.md and the result-to-method map, then prepare co_discussion_handoff.md."

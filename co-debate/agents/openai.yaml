@@ -1,5 +1,4 @@
 interface:
   display_name: "Co-Debate"
-  short_description: "Rank five competing biomedical hypotheses"
-  default_prompt: "Use $co-debate after I select a co-search module. Generate and challenge five competing hypotheses, rank them highest to lowest, and stop so I can choose one for $co-plan."
-
+  short_description: "Debate five hypotheses for one topic"
+  default_prompt: "Use $co-debate as the final $co-mimic-managed subskill to challenge and rank exactly five hypotheses, then return the selected hypothesis to $co-mimic."

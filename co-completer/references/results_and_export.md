@@ -67,7 +67,7 @@ Use these defaults:
 - `raw_data_requirements_summary.md`
 - `completion_decision_menu.md`
 - `project_completion_record.md`
-- `new_module_loop_plan.md`
+- `new_evidence_cycle_plan.md`
 
 ## DOCX Export
 

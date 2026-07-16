@@ -1,79 +1,35 @@
-# Co-Debate Hypothesis and Ranking Contract
+# Co-Debate Contract
 
-## Hypothesis Card
+## Hypothesis card
 
 ```markdown
-### H1. Short hypothesis name
+### H1. Short name
 
-- Selected module:
+- Selected topic:
 - Core mechanism:
 - Predicted axis:
-- Evidence supporting it:
-- Evidence tier:
+- Supporting evidence and tier:
 - Key predictions:
 - Strongest reviewer objection:
 - Alternative or null explanation:
 - Decisive analysis or experiment:
 - Falsification criteria:
-- Main feasibility risk:
-- Collision risk with prior work:
+- Bioinformatics exploration implication:
+- Experimental validation implication:
+- Bioinformatics validation implication:
+- Feasibility risk:
+- Collision risk:
 - Status: prioritized / viable / high-risk / weakened
 ```
 
-## Ranking Columns
+## Ranking
 
 `rank,hypothesis_id,hypothesis_name,novelty,evidence_strength,feasibility,causal_testability,translational_value,collision_risk,risk_penalty,total,decision,main_reason`
 
-Score positive criteria from 1 to 5. Score `collision_risk` and `risk_penalty` from 0 to 5. Use:
+Use `total = novelty + evidence_strength + feasibility + causal_testability + translational_value - collision_risk - risk_penalty`. Break ties by causal testability, feasibility, then novelty.
 
-`total = novelty + evidence_strength + feasibility + causal_testability + translational_value - collision_risk - risk_penalty`
+Exactly five hypotheses must address the same selected topic; at least three must use genuinely different causal structures. Include a null/confounding/reverse-causation hypothesis when appropriate.
 
-Rank from highest to lowest. Break ties by causal testability, feasibility, then novelty.
+## Return to Co-Mimic
 
-## Required Top Five Composition
-
-- Five hypotheses must address the same selected module.
-- At least three must represent genuinely different mechanisms or causal structures.
-- Include one null/confounding/reverse-causation hypothesis when evidence is associative.
-- A high-novelty, low-evidence hypothesis may remain in the Top 5 only with `high-risk` status.
-- Do not insert a known literature target as the winner solely because it has the most publications.
-
-## User Selection Menu
-
-```markdown
-# Hypothesis Selection
-
-Select one:
-
-1. H1 — <name and one-line tradeoff>
-2. H2 — <name and one-line tradeoff>
-3. H3 — <name and one-line tradeoff>
-4. H4 — <name and one-line tradeoff>
-5. H5 — <name and one-line tradeoff>
-
-Alternative actions:
-
-- rerank with changed weights
-- revise one or more hypotheses
-- return to co-search and select another module
-```
-
-## Co-Plan Handoff
-
-After user selection, save:
-
-```markdown
-# Co-Plan Handoff
-
-- Selected module:
-- Selected hypothesis ID:
-- Selected hypothesis:
-- Why the user selected it:
-- Active claim to test:
-- Key predictions:
-- Main alternative explanation:
-- Falsification criteria:
-- Evidence gaps:
-- Relationship to prior module: standalone / parallel / progressive_downstream / progressive_upstream
-```
-
+After user selection record the topic, selected hypothesis, active claim, predictions, alternative explanation, falsification criteria, evidence gaps, and requirements for all three Co-Plan modules. Return this package to Co-Mimic. Co-Mimic decides whether to stop or, with user approval, hand it to `$co-paper` or `$co-plan`.

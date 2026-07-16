@@ -1,107 +1,31 @@
-# Search and Innovation-Point Classification Schema
+# Co-Search Source-Set Schema
 
-## Search Strategy Report
+## Literature matrix
 
-`search_strategy.md` should include:
+`paper_id,title,year,journal,doi,pmid,study_type,disease_or_context,species,tissue_or_cell_type,molecule_or_intervention,phenotype,data_types,public_accessions,discovery_strategy,experimental_validation,bioinformatics_validation,rescue_or_causality,figure_logic,key_results,limitations,distillation_priority,notes`
 
-- Research question.
-- User constraints.
-- Databases searched.
-- Exact query strings.
-- Search date.
-- Inclusion criteria.
-- Exclusion criteria.
-- Known search limitations.
+## Evidence ledger
 
-## Literature Matrix Columns
+`evidence_id,paper_id,claim,evidence_type,evidence_tier,assay_or_dataset,comparison,direction,causal_strength,limitations,reusable_job,provenance`
 
-`paper_id,title,authors,year,journal,doi,pmid,study_type,disease_or_context,species,tissue_or_cell_type,main_axis,data_types,public_dataset_accessions,key_results,validation_level,limitations,notes`
+Evidence tiers: `background`, `association`, `multi_dataset_support`, `mechanistic_inference`, `perturbation`, `direct_interaction`, `causal_rescue`.
 
-## Innovation Point Matrix Columns
+## Method and dataset inventory
 
-`innovation_id,paper_id,innovation_family,innovation_point,biological_context,why_new_or_useful,evidence_type,key_method_or_dataset,validation_level,can_be_selected_as_module,likely_next_step,limitations,notes`
+`item_id,paper_id,item_type,name_or_accession,role,discovery_or_validation,required_metadata,reusable_requirement,limitations`
 
-Innovation families:
+## Co-Mimic handoff
 
-- `new_phenotype`
-- `new_mechanism`
-- `new_molecule_type`
-- `new_experimental_method`
-- `new_bioinformatics_analysis`
+Record:
 
-## Module Options Report
+- Research scope and constraints.
+- Ranked source papers and why each matters.
+- Common evidence architecture.
+- Candidate discovery methods.
+- Experimental validation ladder.
+- Independent bioinformatics validation pattern.
+- Known targets and crowded combinations to exclude.
+- Unresolved gaps suitable for `???` slots.
+- Search limitations and novelty boundary.
 
-Save `module_options.md` with the five sections below. Each section should list selectable modules rather than whole paper classes.
-
-```markdown
-# Module Options
-
-## 1. New Phenotypes
-
-| Option | Innovation point | Representative papers | Why useful | First co-debate move |
-|---|---|---|---|---|
-
-## 2. New Mechanisms
-
-| Option | Innovation point | Representative papers | Why useful | First co-debate move |
-|---|---|---|---|---|
-
-## 3. New Molecule Types
-
-| Option | Innovation point | Representative papers | Why useful | First co-debate move |
-|---|---|---|---|---|
-
-## 4. New Experimental Methods
-
-| Option | Innovation point | Representative papers | Why useful | First co-debate move |
-|---|---|---|---|---|
-
-## 5. New Bioinformatics Analyses
-
-| Option | Innovation point | Representative papers | Why useful | First co-debate move |
-|---|---|---|---|---|
-
-## Recommended Choice
-
-- Best first module:
-- Rationale:
-- What it can answer:
-- What it cannot answer:
-- Suggested prompt for `$co-debate`:
-```
-
-## Co-Debate Handoff
-
-After the user selects one module, save `co_debate_handoff.md`:
-
-```markdown
-# Co-Debate Handoff
-
-- Selected innovation family:
-- Selected innovation point:
-- User selection reason:
-- Parent or parallel module:
-- Key supporting papers and evidence-ledger rows:
-- Known mechanisms or targets to avoid:
-- Main uncertainties:
-- Required debate output: five competing hypotheses ranked highest to lowest
-```
-
-## Evidence Tier Labels
-
-- `background`: useful context, not direct evidence.
-- `association`: correlation or differential abundance/expression.
-- `multi_dataset_support`: repeated association across cohorts.
-- `mechanistic_inference`: pathway, network, ligand-receptor, regulon, trajectory, or CMap inference.
-- `perturbation`: knockdown, knockout, inhibitor, stimulation, or rescue.
-- `causal_rescue`: perturbation plus downstream rescue or phenotype reversal.
-
-When classifying validation ladders, explicitly capture decisive assays such as conditional knockout, tissue/cell-specific knockout, mass-spectrometry detection or confirmation, SPR/BLI/ITC molecular interaction assays, Co-IP, CETSA/DARTS, rescue, and phenotype readouts.
-
-Use the weakest applicable tier when a paper mixes strong and weak claims.
-
-## What Not To Do
-
-- Do not output `topic_classes.md` as the main `$co-paper` decision file.
-- Do not ask the user to choose a whole literature class.
-- Do not infer a complete study design from one paper or one literature cluster.
+Do not include a Co-Plan recommendation. The next stage is `$co-mimic`.
